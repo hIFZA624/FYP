@@ -1,0 +1,40 @@
+﻿@using finalYearProject.ViewModel
+@model PUCITCafeCategoryViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
+}
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <h1 class=" text-center">Add a Product Category</h1>
+            <br />
+            <form enctype="multipart/form-data" method="post" action="/PharmacyCafe/AddCategory" class="form-container">
+                <div class="form-group">
+                    <label asp-for="addCategory.CategoryName"><b>Enter Category Name</b></label>
+                    <input placeholder="Enter Category Name" asp-for="addCategory.CategoryName" name="CategoryName" class="form-control">
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="addCategory.Description"><b>Enter Description</b></label>
+                    <textarea placeholder="Enter Description" class="form-control size" asp-for="addCategory.Description" name="Description"></textarea>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="addCategory.Photo">Choose Picture</label>
+
+                    <input input asp-for="addCategory.Photo" name="Photo" class="form-control" id="exampleFormControlFile1">
+                </div>
+                <br />
+                <input type="submit" class="btn btn-primary button-font" value="Add Product Category" />
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+

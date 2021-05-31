@@ -1,0 +1,40 @@
+﻿@using finalYearProject.Models
+@model Users
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<!--Body Part-->
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <h1 class=" text-center">User Profile</h1>
+            <br />
+            <form method="post" class="form-container">
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <input hidden asp-for="@Model.id" class="form-control">
+
+
+                <div class="form-group">
+                    <label asp-for="@Model.FirstName"><b>First Name</b></label>
+                    <input asp-for="@Model.FirstName" class="form-control">
+
+                </div>
+                <br />
+                <div class="form-group">
+                    <label asp-for="@Model.LastName"><b>Last Name</b></label>
+                    <input asp-for="@Model.LastName" class="form-control">
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <label asp-for="@Model.email"><b>Email</b></label>
+                    <input asp-for="@Model.email" class="form-control">
+                </div>
+                <br />
+                <input type="submit" class="btn btn-primary button-font" value="Update" />
+            </form>
+        </div>
+    </div>
+</section>

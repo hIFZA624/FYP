@@ -1,0 +1,157 @@
+﻿@using finalYearProject.ViewModel
+@model PUCITShowViewModel
+@{
+
+    Layout = "~/Views/Shared/_LayoutCafe.cshtml";
+}
+<div class="modal-content">
+    <table id="mytable" class="table">
+        <!--  <thead>
+            <tr>
+              <th>Product</th>
+              <th>Name</th>
+              <th>Qty</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+        <tbody class="table-body">
+        </tbody>-->
+
+    </table>
+</div>
+<!--Java Script Code-->
+<script type="text/javascript">
+
+    function finshProduct() {
+        console.log("Finshded Prodcut");
+        //product convert
+        let cartItems = localStorage.getItem("productsInCart");
+        cartItems = JSON.parse(cartItems);
+        if (cartItems != null) {
+            localStorage.clear();
+
+            localStorage.setItem("productsInCartversion2", JSON.stringify(cartItems));
+            window.location.reload();
+        }
+        document.getElementById("demo").innerHTML = "Paragraph change";
+    }
+    /*const cartBox=document.querySelector(".modal-content");
+    const cardboxtable=cartBox.querySelector("table");
+    let tableData="";
+    tableData+="<tr><th>Item Name      </th><th>item no     </th><th>item price   </th><th>     item Description    </th></tr>";
+    if(cartBox &&  JSON.parse(localStorage.getItem("productsInCart"))
+    {
+    cartBox.innerHTML="";
+    Object.values(JSON.parse(localStorage.getItem("productsInCart")).map(item=>{
+      cartBox.innerHTML+
+    }))
+    *?
+      /*JSON.parse(localStorage.getItem("productsInCart")).map(data=>{
+    tableData+="<tr><th>"+data.Name+"</th><th>"+data.inCart+"</th><th>"+data.Price+"</th><th>"+data.Para+"</th></tr>";
+      });*/
+    //}
+    //cardboxtable.innerHTML=tableData;
+
+    localStorage.setItem("id", 0);
+    function displayCart() {
+        let cartItems = localStorage.getItem("productsforadmin");
+        cartItems = JSON.parse(cartItems);
+        let cartBox = document.querySelector(".modal-content");
+        let tablecontent = cartBox.querySelector("table");
+        let tabledata = "";
+        tabledata += `<thead class="make">
+                                                <tr>
+    <th>User Id</th>
+                                                  <th>Product Id</th>
+             <th>Product Category</th>
+                                                  <th>Product Name</th>
+                                                  <th>Qty</th>
+                                                  <th>Price</th>
+                                                   <th>PickUp Time</th>
+<th></th>
+                                                </tr><thead>`;
+        if (cartItems) {
+            Object.values(cartItems).map(item => {
+                if (item.cafe == "pucitcafe") {
+                    tabledata += `<tbody >
+
+
+<tr>
+    <td>
+                                                    <div class="product-img" >
+                                                      <p>${item.userId}</p>
+                                                    </div>
+                                                  </td>
+                                                  <td>
+                                                    <div class="product-img" >
+                                                      <p>${item.Id}</p>
+                                                    </div>
+                                                  </td>
+
+                                                   <td>
+                                                      <p>${item.Para}</p>
+                                                  </td >
+
+                                                  <td>
+                                                    <p>${item.Name}</p>
+                                                  </td>
+
+                                                  <td>
+                                                    <div class="button-conatiner">
+                                                    <p>${item.inCart}</p>
+                                                    </div>
+                                                  </td>
+
+                                                  <td>
+ 
+                                                     <p>${item.Price}</p>
+                                                  </td>
+
+                                                    <td>
+                                                       <input placeholder="Enter PickUpTime" class="removeItem form-control text-muted"  >
+                                                   </td>
+
+                                                    <td>
+                                                    <button onclick="removeItem()" class="removeItem btn btn-info">Update</button>
+                                                  </td>
+
+                                                </tr>
+                                                <tbody>
+                                               `;
+                }
+                tablecontent.innerHTML = tabledata;
+            })
+        }
+    }
+
+
+
+    displayCart();
+    const remove = document.getElementsByClassName('removeItem');
+    for (var i = 0; i < remove.length; i++) {
+        let removebtn = remove[i];
+        let items = [];
+
+        removebtn.addEventListener('click', () => {
+            console.log("hello");
+            let cartItems = localStorage.getItem("productsInCart");
+            cartItems = JSON.parse(cartItems);
+            const number = event.target.parentElement.parentElement.children[3].children[0].textContent;
+            cartItems.map(data => {
+                if (data.Name != event.target.parentElement.parentElement.children[2].children[0].textContent) {
+                    items.push(data);
+                }
+            })
+            let productNumbers = localStorage.getItem("cartNumbers");
+            productNumbers = parseInt(productNumbers);
+            if (productNumbers);
+            {
+                localStorage.setItem("cartNumbers", productNumbers - number);
+                document.querySelector(".increse span").textContent = productNumbers - number;
+            }
+            localStorage.setItem("productsInCart", JSON.stringify(items));
+            window.location.reload();
+        })
+    }
+</script>
+   

@@ -1,0 +1,39 @@
+﻿@using finalYearProject.ViewModel
+@model PUCITCategoryViewcs
+@{
+    Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
+}
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-10 m-auto d-block card p-3 decorate">
+            <br />
+            <h1 class="text-center font-weight-bold">@Model.title</h1>
+            <br />
+            <table class="table  table-hover table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"><b>Category Name</b></th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (finalYearProject.Models.PUCITCafeCategory p in Model.Category)
+                    {
+                        <tr>
+                            <td>@p.CategoryName</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">View</a>
+                                <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">Edit</a>
+                                <a asp-action="PucitCategoryDelete" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+
+
+

@@ -1,0 +1,32 @@
+﻿@model LinkedList<finalYearProject.Models.Roles>
+@{
+    Layout = "~/Views/Shared/_LayoutRole.cshtml";
+}
+<div class="container">
+    <section class="mainpart">
+        <div class="row">
+            <div class="col-lg-10  m-auto d-block card p-3 decorate">
+                <br />
+                <h2 class=" text-center">All Roles</h2>
+                <hr />
+                <a asp-action="CreateRole" class="btn btn-primary mb-3">Add Role</a>
+                @foreach (finalYearProject.Models.Roles role in Model)
+                {
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Role Id: @role.id
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">@role.RoleName</h5>
+                        </div>
+                        <div class="card-footer">
+                            <!--<a asp-action="EditUserInRole" asp-route-roleId="@role.id" class="btn btn-primary">Add or Remove Users</a>-->
+                            <a asp-action="EditRole" asp-route-id="@role.id" class="btn btn-primary">Edit</a>
+                            <a asp-action="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

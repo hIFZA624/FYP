@@ -1,0 +1,26 @@
+﻿@using finalYearProject.Models
+@model Roles
+@{
+    Layout = "~/Views/Shared/_LayoutRole.cshtml";
+}
+<div class="container">
+    <section class="mainpart">
+        <div class="row">
+            <div class="col-lg-10 m-auto d-block card p-3 decorate">
+                <br />
+                <h2 class=" text-center">Create Role</h2>
+                <hr />
+                <div asp-validation-summary="All"></div>
+                <form method="post" action="/Administrator/CreateRole">
+                    <div class="form-group">
+                        <label asp-for="RoleName" class="form-label text-primary">Role Name</label>
+                        <input class="form-control text-muted" asp-for="RoleName" placeholder="Enter Role Name">
+                    </div>
+                    <input type="submit" class="btn btn-primary mb-3" value="Add Role" />
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+</div>

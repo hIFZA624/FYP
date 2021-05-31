@@ -1,0 +1,215 @@
+﻿@using finalYearProject.Models
+@model ChangePasswordModel
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .background {
+            background-image: url('/images/cafe1.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .most-liked {
+            position: relative;
+            margin-top: 25px;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+        }
+
+        .bg-video {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 89%;
+        }
+
+        .cafe-card {
+            position: relative;
+            box-shadow: 5px 15px 50px #634832;
+            max-width: 420px;
+            transition: all .8s;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .rotate {
+            perspective: 100rem;
+        }
+
+        .back {
+            position: absolute;
+            top: -100%;
+            background: #fff;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            user-select: none;
+            pointer-events: none;
+            transform: rotateY(180deg);
+            transition: top .8s opacity .4s;
+        }
+
+        .back-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+
+        .rotate:hover .cafe-card {
+            transform: rotateY(180deg);
+        }
+
+        .rotate:hover .back {
+            opacity: 1;
+            top: 0;
+            user-select: auto;
+            pointer-events: auto;
+        }
+
+        .back-content .btn {
+            color: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Josefin Sans',sans-serif;
+        }
+
+        .content-4 .nav {
+            justify-content: center;
+            margin-bottom: 5%;
+        }
+
+        .content-4 .nav-tabs {
+            margin: 2px;
+            border: none;
+            border-bottom: 0px;
+            text-align: center;
+            cursor: pointer;
+            background: #000;
+        }
+
+        .content-4 .tab-item {
+            text-decoration: none;
+            color: #dbc1ac;
+        }
+
+            .content-4 .tab-item i {
+                display: block;
+                font-size: 45px;
+                padding: 6px 27px 0px 27px;
+            }
+
+            .content-4 .tab-item span {
+                display: inline-block;
+                padding-bottom: 16px;
+                width: 100%;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .content-4 .tab-item.active {
+                color: #967259;
+            }
+
+        .tab-content {
+            margin-bottom: 5%;
+            transition: all ease-in;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- sTART OF hOME PAGE-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand text-weight-bold" href="#">Cafeteria And Restaurant Management System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Offer Places
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Cafe</a>
+                            <a class="dropdown-item" href="#">Restaurants</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Logout</a>
+                    </li>
+                </ul>
+                <!--
+                <form class="form-inline my-2 my-lg-0">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>-->
+            </div>
+        </nav>
+
+    </header>
+    <section class="mainpart">
+        <div class="container">
+            <div class="col-lg-8 m-auto d-block card p-5 decorate">
+                <br />
+                <h1 class=" text-center">Change Password</h1>
+                <br />
+                <form method="post" class="form-container">
+                    <div class="form-group">
+                        <label asp-for="@Model.currentPassword"><b>Current Password</b></label>
+                        <input type="password" placeholder="Enter Current Password" asp-for="@Model.currentPassword" class="form-control">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="@Model.newPassword"><b>New Password</b></label>
+                        <input type="password" placeholder="Enter New Password" asp-for="@Model.newPassword" class="form-control">
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label asp-for="@Model.confirmedPassword"><b>Confirm New Password</b></label>
+                        <input type="password" placeholder="Enter Confirmed New Password" asp-for="@Model.confirmedPassword" class="form-control">
+                    </div>
+                    <br />
+                    <input type="submit" class="btn btn-primary button-font" value="Change Password" />
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

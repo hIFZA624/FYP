@@ -1,0 +1,71 @@
+﻿@using finalYearProject.Models
+@model Login
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+ 
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <style>
+        .add {
+            border: 1px;
+            padding: 30px;
+            margin-top: 20vh;
+            margin-bottom: 20vh;
+            -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+            box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+        }
+
+        * {
+            color: #ffffff
+        }
+
+        .background {
+            background-image: url('/images/back.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            height: 100vh auto;
+            width: 100%;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid, background">
+        <div class="row">
+            <div class="col-md-3 col-sm-2 col-lg-3 "></div>
+
+            <div class="col-md-6 col-sm-8 col-lg-6">
+
+
+                <form class="add" method="post" action="/Home/login">
+
+                    <h1 style="text-align:center">Log In</h1>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="username"><b>Username</b></label>
+                        <input asp-for="username" class="form-control" placeholder="Enter Username">
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="password"><b>Password</b></label>
+                        <input asp-for="password" class="form-control" placeholder="Enter Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-success btn-block" style="margin-top:10px">Login</button>
+                    <div>
+                        <p> Dont have an account<a href=" ">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3 col-sm-2 col-lg-3 "></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@using finalYearProject.ViewModel
+@model PUCITShowViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
+}
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-10 m-auto d-block card p-3 decorate">
+            <br />
+            <h1 class=" text-center">Pharmacy Cafe Products</h1>
+            <hr />
+            <table class="table  table-hover table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"><b>Product Name</b></th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
+                    {
+                        <tr>
+                            <td>@p.Name</td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">View</a>
+                                <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">Edit</a>
+                                <a asp-action="Remove" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
