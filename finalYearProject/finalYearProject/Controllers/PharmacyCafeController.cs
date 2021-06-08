@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace finalYearProject.Controllers
 {
-    [Authorize(Roles = "PharmacyCafeAdmin")]
+    [Authorize(Roles = "PharmacyCafeAdmin,AppAdministrator")]
     public class PharmacyCafeController : Controller
     {
         PUCITRepository pucitRepository = new PUCITRepository();
@@ -67,7 +67,7 @@ namespace finalYearProject.Controllers
             return View("AddProduct", pUCITCafeViewModel);
         }
         [HttpPost]
-        public ViewResult AddProduct(PUCITProducts food)
+        public IActionResult AddProduct(PUCITProducts food)
         {
 
             string uniqueFileName = null;
@@ -81,7 +81,7 @@ namespace finalYearProject.Controllers
             pucitRepository.addPharmacyProduct(food.Category, food.Name, food.Price, food.Quantity, uniqueFileName);
             PUCITCategoryViewcs pUCITCategory = new PUCITCategoryViewcs();
             pUCITCategory.Category = pucitRepository.CategoryPharmacy;
-            return View("Return");
+            return RedirectToAction("CategoryView");
         }
         public ViewResult ProductView(String CategoryName)
         {
@@ -97,6 +97,13 @@ namespace finalYearProject.Controllers
             pucitShowViewModel.productlist = pucitRepository.temp;
             pucitShowViewModel.Category = pucitRepository.CategoryPharmacy;
             return View("ProductsView", pucitShowViewModel);
+        }
+        public ViewResult OrderedList()
+        {
+            PUCITShowViewModel pucitShowViewModel = new PUCITShowViewModel();
+            pucitShowViewModel.productlist = pucitRepository.temp;
+            pucitShowViewModel.Category = pucitRepository.CategoryPharmacy;
+            return View(pucitShowViewModel);
         }
 
     }

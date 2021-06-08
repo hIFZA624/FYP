@@ -1,4 +1,9 @@
 ﻿<!DOCKTYPE html>
+    @{
+        var uname = ViewBag.uname;
+        var cafe = ViewBag.cafe;
+        var email = ViewBag.email;
+         }
     <html>
     <head>
         <meta charset="utf-8">
@@ -201,7 +206,7 @@
                             <form class="d-flex">
                                 <ul class=" nav justify-content-end">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-controller="Cafe" asp-action="PucitCafe">Home</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-route-cafe="@cafe" asp-controller="Cafe" asp-action="PucitCafe">Home</a>
                                     </li>
 
                                     <li class="nav-item dropdown">
@@ -209,30 +214,31 @@
                                         <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
                                             @foreach (finalYearProject.Models.PUCITCafeCategory p in Model.Category)
                                             {
-                                                <li><a asp-action="ProductsView" asp-route-CategoryName="@p.CategoryName" class="dropdown-item">@p.CategoryName</a></li>
+                                                <li><a asp-action="ProductsView" asp-route-email="@email" asp-route-CategoryName="@p.CategoryName" asp-route-cafe="@cafe" asp-route-uname="@uname" class="dropdown-item">@p.CategoryName</a></li>
 
                                             }
 
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Ordered List</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-email="@email" asp-route-cafe="@cafe" asp-route-uname="@uname" asp-action="SubmitOrder">Ordered List</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-action="HomePage">Exit</a>
+                                        <a class="nav-link active" asp-route-uname="@uname" asp-action="HomePage" aria-current="page" onclick="confirm()">Exit</a>
                                     </li>
                                 </ul>
                             </form>
                         </div>
                     </nav>
-               
-
         </header>
         <!--End of Home PAGE-->
         @RenderBody()
         <!-- Start of Menu Section-->
-     
-     
+     <script>
+         function confirm() {
+              let cartItems = localStorage.getItem("productsInCart");
+         }
+     </script>
         <!-- Start of Menu Section-->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -14,7 +14,7 @@ namespace finalYearProject.Models
         [Required]
         public string LastName { get; set; }
         [Required]
-        [EmailAddress]
+       
         public string email { get; set; }
         [Required]
         [EmailAddress]

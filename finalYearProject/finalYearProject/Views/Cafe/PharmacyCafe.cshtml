@@ -9,6 +9,12 @@
 -->
 
 @model List<finalYearProject.Models.PUCITCafeCategory>
+@{ 
+    var uname = ViewBag.uname;
+    
+    var cafe = ViewBag.cafe;
+
+}
 <!DOCKTYPE html>
     <html>
     <head>
@@ -114,7 +120,7 @@
                                         <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
                                             @foreach (finalYearProject.Models.PUCITCafeCategory p in Model)
                                             {
-                                                <li><a asp-action="ProductsView" asp-route-CategoryName="@p.CategoryName" class="dropdown-item">@p.CategoryName</a></li>
+                                                <li><a asp-action="ProductViewPharmacy" asp-route-cafe="@cafe" asp-route-CategoryName="@p.CategoryName" asp-route-uname="@uname" class="dropdown-item">@p.CategoryName</a></li>
 
                                             }
 
@@ -122,10 +128,10 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Ordered List</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-cafe="@cafe" asp-route-uname="@uname" asp-action="SubmitOrderPharmacy">Ordered List</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-action="HomePage">Exit</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="HomePage">Exit</a>
                                     </li>
                                 </ul>
                             </form>

@@ -5,9 +5,11 @@
     var uname = ViewBag.uname;
 }
 <html>
+
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Baloo 2' rel='stylesheet'>
+    <link href="~/css/site.css" rel="stylesheet" />
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -91,6 +93,7 @@
             background-color: green;
             color: white;
         }
+
         .sidenav a, .dropdown-btn {
             padding: 30px 30px 0px 30px;
             text-decoration: none;
@@ -122,37 +125,46 @@
 
             </div>
         </div>
-
     </header>
     <div class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-        <a asp-action="AdminHomePage"><i class="fa fa-home"></i> Home</a>
+        <a asp-action="Admin" asp-route-uname="@uname"><i class="fa fa-home"></i> Home</a>
 
         <button class="dropdown-btn">
             <i class="fa fa-tasks" aria-hidden="true"></i>
             Manage  <i class="fa fa-caret-down"></i>
-
         </button>
         <div class="dropdown-container">
-            <a asp-controller="Administrator" asp-action="ListUsers">Users</a>
-            <a asp-controller="Administrator" asp-action="ViewRoles">Roles</a>
-            <a asp-action="CategoryView" asp-route-cafe="PUCITCafe" asp-controller="PUCITAdmin">PUCIT Cafe</a>
-            <a asp-action="CategoryView" asp-route-cafe="PharmacyCafe" asp-controller="PharmacyCafe">Pharmacy Cafe</a>
-            <a asp-action="">Restaurants</a>
+            @if (User.IsInRole("AppAdministrator"))
+            {
+                <a asp-controller="Administrator" asp-action="ListUsers">Users</a>
+                <a asp-controller="Administrator" asp-action="ViewRoles">Roles</a>
+            }
+            @if (User.IsInRole("PUCITCafeAdmin") || User.IsInRole("AppAdministrator"))
+            {
+                <a asp-action="CategoryView" asp-route-cafe="PUCITCafe" asp-controller="PUCITAdmin">PUCIT Cafe</a>
+            }
+            @if (User.IsInRole("PharmacyCafeAdmin") || User.IsInRole("AppAdministrator"))
+            {
+                <a asp-action="CategoryView" asp-route-cafe="PharmacyCafe" asp-controller="PharmacyCafe">Pharmacy Cafe</a>
+            }
+            <a asp-action="ViewRestaurent"  asp-controller="RestaurentAdmin">Restaurent Admin</a>
         </div>
         <button class="dropdown-btn">
             <i class="fa fa-cog"></i>
             Settings  <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a asp-action="ChangePassword" asp-route-email="@uname"> Change Password</a>
-            <a asp-action="Profile" asp-route-email="@uname"> Profile</a>
+            <a  asp-action="ChangePassword" asp-route-email="@uname"> Change Password</a>
+            <a asp-action="Profile" asp-route-Email="@uname"> Profile</a>
         </div>
         <a asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
     </div>
     @RenderBody()
     <script>
+     
         const openNav = () => {
+          
             document.getElementById("mySidenav").style.width = "260px";
         }
         const closeNav = () => {

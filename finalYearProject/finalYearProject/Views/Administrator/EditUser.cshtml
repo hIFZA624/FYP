@@ -45,7 +45,7 @@
                     </div>
                     <div class="card mb-3">
                         <div class="card-header">
-                            User Roles
+                            <h4><b>  User Roles</b></h4>
                         </div>
                         <div class="card-body">
                             @foreach (var user in Model.Roles)
@@ -53,9 +53,7 @@
                                 <h5 class="card-title">@user</h5>
                             }
                         </div>
-                        <div class="card-footer">
-                            <a asp-action="EditaUserRole" asp-route-roleId="@Model.id" class="btn btn-primary">Manage Roles</a>
-                        </div>
+                       
                     </div>
                 </form>
             </div>

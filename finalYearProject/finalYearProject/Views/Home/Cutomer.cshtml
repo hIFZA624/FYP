@@ -158,10 +158,10 @@
                             <form class="d-flex">
                                 <ul class=" nav justify-content-end">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-action="Customer">Home</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="Customer">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                                        <a class="nav-link active" aria-current="page">About</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Offer Places</a>
@@ -172,28 +172,24 @@
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
                                         <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
-                                            <li><a class="dropdown-item">Change Password</a></li>
-                                            <li><a class="dropdown-item" href="#">Profile</a></li>
-
+                                            <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a></li>
+                                            <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="userProfile">Profile</a></li>
+                                            <li><a class="dropdown-item"asp-controller="RestaurentOwner" asp-action="OwnerLogin">Restaurant Owner?</a></li>
                                         </ul>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
-                                    </li>
+
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page" asp-action="Logout">Logout</a>
                                     </li>
+
                                 </ul>
                             </form>
                         </div>
-                    </nav>
-               
+                    </nav>           
             <!--Start of caurasel-->
-
             <div id="demo" class="carousel slide" data-ride="carousel">
-
                 <!-- Indicators -->
                 <ul class="carousel-indicators">
                     <li data-target="#demo" data-slide-to="0" class="active"></li>

@@ -1,0 +1,40 @@
+﻿@model List<finalYearProject.Models.Restaurent>
+@{
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+
+}
+
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-10 m-auto d-block card p-3 decorate">
+            <br />
+            <h1 class="text-center font-weight-bold">All Restaurants</h1>
+            <br />
+            <table class="table  table-hover table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"><b>Restaurant Name</b></th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (finalYearProject.Models.Restaurent r in Model)
+                    {
+                        <tr>
+                            <td> @r.NameOfRestaurants</td>
+                            <td>
+
+                                <!--  <a asp-route-restaurentID="@r.RestaurentID" asp-action="AddMenu" class="btn btn-info">View</a>-->
+
+                                <a asp-route-restaurentID="@r.RestaurentID" asp-action="Details" class="btn btn-info">View</a>
+                                <a asp-route-restaurentID="@r.RestaurentID" asp-action="Edit" class="btn btn-warning">Update</a>
+                                <a asp-action="Delete" asp-route-restaurentID="@r.RestaurentID" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

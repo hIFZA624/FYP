@@ -1,6 +1,7 @@
 ﻿@using finalYearProject.Models
 @model Users
 @{
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <!--Body Part-->
@@ -29,8 +30,8 @@
                 <br />
 
                 <div class="form-group">
-                    <label asp-for="@Model.email"><b>Email</b></label>
-                    <input asp-for="@Model.email" class="form-control">
+                    <label asp-for="@Model.username"><b>Email</b></label>
+                    <input asp-for="@Model.username" class="form-control">
                 </div>
                 <br />
                 <input type="submit" class="btn btn-primary button-font" value="Update" />

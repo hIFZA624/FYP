@@ -2,8 +2,9 @@
 @model finalYearProject.ViewModel.PUCITCategoryViewcs
 @{
     var uname = ViewBag.uname;
-    
+
     var cafe = ViewBag.cafe;
+    var email = ViewBag.email;
 
 }
 <!DOCKTYPE html>
@@ -98,7 +99,7 @@
                             <form class="d-flex">
                                 <ul class=" nav justify-content-end">
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-controller="Cafe" asp-action="PucitCafe">Home</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-cafe="@cafe" asp-action="PucitCafe" asp-route-uname="@uname">Home</a>
                                     </li>
 
                                     <li class="nav-item dropdown">
@@ -106,17 +107,17 @@
                                         <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
                                             @foreach (finalYearProject.Models.PUCITCafeCategory p in Model.Category)
                                             {
-                                                <li><a asp-action="ProductsView" asp-route-cafe="@cafe" asp-route-uname="@uname" asp-route-CategoryName="@p.CategoryName" class="dropdown-item">@p.CategoryName</a></li>
+                                                <li><a asp-action="ProductsView" asp-route-cafe="@cafe" asp-route-uname="@uname" asp-route-email="@email" asp-route-CategoryName="@p.CategoryName" class="dropdown-item">@p.CategoryName</a></li>
 
                                             }
 
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" href="#">Ordered List</a>
+                                        <a class="nav-link active" aria-current="page" asp-route-cafe="@cafe" asp-route-email="@email" asp-route-uname="@uname"asp-action="SubmitOrder">Ordered List</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-action="HomePage">Exit</a>
+                                        <a class="nav-link active" aria-current="page" asp-action="HomePage" asp-route-uname="@uname">Exit</a>
                                     </li>
                                 </ul>
                             </form>

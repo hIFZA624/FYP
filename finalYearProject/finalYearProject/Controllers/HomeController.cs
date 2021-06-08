@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 namespace finalYearProject.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> userManager;
@@ -25,6 +26,7 @@ namespace finalYearProject.Controllers
         
         public ViewResult login()
         {
+            
             return View();
         }
         [HttpPost]
@@ -34,11 +36,13 @@ namespace finalYearProject.Controllers
 
             if (ModelState.IsValid)
             {
-                ViewBag.uname = userdata.username;
+                
                 var result = await signInManager.PasswordSignInAsync(userdata.username, userdata.password, userdata.RememberMe, false);
-                var user = await userManager.FindByEmailAsync(userdata.username);
+               
                 if (result.Succeeded)
                 {
+                    var user = await userManager.FindByEmailAsync(userdata.username);
+                    ViewBag.uname = user.Id;
                     foreach (var role in roleManager.Roles.ToList())
                     {
                         if (await userManager.IsInRoleAsync(user, role.Name))
@@ -78,6 +82,8 @@ namespace finalYearProject.Controllers
                 var result = await userManager.CreateAsync(user, userdata.password);
                 if (result.Succeeded)
                 {
+                    var users = await userManager.FindByEmailAsync(userdata.email);
+                    ViewBag.uname = users.Id;
                     await signInManager.SignInAsync(user, isPersistent: false);
                     return View("Cutomer");
                 }
@@ -90,14 +96,18 @@ namespace finalYearProject.Controllers
             }
             return View(userdata);
         }
-        public ViewResult Admin()
+        [Authorize]
+        public ViewResult Admin(string uname)
         {
+            ViewBag.uname = uname;
             return View();
         }
+        [Authorize]
         public ViewResult CafeAdmin()
         {
             return View();
         }
+        [Authorize]
         [HttpGet]
         public ViewResult ChangePassword(string email)
         {
@@ -107,13 +117,14 @@ namespace finalYearProject.Controllers
         [HttpPost]
         public async Task<ViewResult> ChangePassword(ChangePasswordModel model,string email)
         {
+            ViewBag.uname = email;
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(email);
+                var user = await userManager.FindByIdAsync(email);
                 var result = await userManager.ChangePasswordAsync(user, model.currentPassword, model.newPassword);
                 if (result.Succeeded)
                 {
-                      ViewBag.IsSuccess = true;
+                     ViewBag.IsSuccess = true;
                      ModelState.Clear();
                      return View();
                 }
@@ -124,29 +135,30 @@ namespace finalYearProject.Controllers
             }
             return View(model);
         }
+        [Authorize]
         [HttpGet]
-        public async  Task<ViewResult> Profile(string email)
+        public async  Task<ViewResult> Profile(string Email)
         {
-            ViewBag.uname = email;
-            var userFind = await userManager.FindByEmailAsync(email);
+            ViewBag.uname = Email;
+            var userFind = await userManager.FindByIdAsync(Email);
             var user = new Users();
             user.id = userFind.Id;
             user.FirstName = userFind.firstName;
             user.LastName = userFind.LastName;
-            user.email = userFind.Email; 
-         
+            user.username = userFind.UserName; 
             return View("Profile", user);   
         }
         [HttpPost]
-        public async Task<ViewResult> Profile(Users user)
+        public async Task<ViewResult> Profile(Users user,string email)
         {
+            ViewBag.uname = email;
             if (ModelState.IsValid)
             {
                 var userFind = await userManager.FindByIdAsync(user.id);
                 userFind.firstName = user.FirstName;
                 userFind.LastName = user.LastName;
-                userFind.Email = user.email;
-                userFind.UserName = user.email;
+                userFind.Email = user.username;
+                userFind.UserName = user.username;
                 var result = await userManager.UpdateAsync(userFind);
                 // var users = userManager.Users;
                 if (result.Succeeded)
@@ -167,14 +179,19 @@ namespace finalYearProject.Controllers
             await  signInManager.SignOutAsync();
             return View("Login");
         }
-        public ViewResult Customer()
+        [Authorize]
+        public async  Task<ViewResult> Customer(string uname)
         {
+            var userFind = await userManager.FindByIdAsync(uname);
+            ViewBag.uname=userFind.Id;
             return View("Cutomer");
         }
+       
         [HttpGet]
         public async Task<ViewResult> userProfile(string uname)
         {
-            var userFind = await userManager.FindByEmailAsync(uname);
+            ViewBag.uname = uname;
+            var userFind = await userManager.FindByIdAsync(uname);
             var user = new Users();
             user.id = userFind.Id;
             user.FirstName = userFind.firstName;
@@ -183,8 +200,14 @@ namespace finalYearProject.Controllers
             return View("userProfile", user);
           
         }
+       
         [HttpGet]
         public ViewResult ChangePasswd(string uname)
+        {
+            ViewBag.uname = uname;
+            return View();
+        }
+        public ViewResult About()
         {
             return View();
         }

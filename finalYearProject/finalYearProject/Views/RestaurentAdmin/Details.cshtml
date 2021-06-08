@@ -1,0 +1,74 @@
+﻿@using finalYearProject.Models;
+@model Restaurent
+@{ Layout = "~/Views/Shared/_Layout1.cshtml"; }
+
+
+
+
+<style>
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: auto;
+        text-align: center;
+        font-family: arial;
+    }
+
+    .price {
+        color: grey;
+        font-size: 22px;
+    }
+
+    .card button {
+        border: none;
+        outline: 0;
+        padding: 12px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        font-size: 18px;
+    }
+
+        .card button:hover {
+            opacity: 0.7;
+        }
+
+    .height {
+    }
+</style>
+<!--
+<h2 style="text-align:center;margin:20px;">Restaurant</h2>
+
+<div class="card">
+    <img class="height" src="~/images/@Model.PhotoPATH" alt="Denim Jeans" style="width:100%">
+    <h3>Name of Restaurant : @Model.NameOfRestaurants</h3>
+    <p class="price">Location : @Model.Location</p>
+    <p>Phone No: @Model.PhoneNo</p>
+    <p>Open Untill: @Model.OpenUntil</p>
+    <p>Delivery Charges: @Model.DeliveryCharges</p>
+    <a asp-route-restaurentID="@Model.RestaurentID" asp-action="AddMenu" class="btn btn-info">View</a>
+</div>
+-->
+<section>
+    <div class="container-fluid">
+        <h1 class="text-center text-capitalize pt-3">Manage Restaurant</h1>
+        <hr class="2-25 mx-auto">
+        <div class="row mb-5" style="margin-top:20px;">
+            <div class="col-lg-6 col-md-6 col-12">
+                <img   src="~/images/@Model.PhotoPATH" alt="Denim Jeans" style="width:100%;height:300px;object-fit:cover;">
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <h3>Name of Restaurant : @Model.NameOfRestaurants</h3>
+                <p class="price">Location : @Model.Location</p>
+                <p>Phone No: @Model.PhoneNo</p>
+                <p>Open Untill: @Model.OpenUntil</p>
+                <p>Delivery Charges: @Model.DeliveryCharges</p>
+                <div>
+                    <a asp-route-restaurentID="@Model.RestaurentID" asp-action="AddMenu" class="btn bg-dark text-white">Add Menu</a>
+                    <a asp-action="ViewRestaurentMenue" asp-route-restaurentID="@Model.RestaurentID" class="btn bg-dark text-white">View Menu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

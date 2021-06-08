@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace finalYearProject.Controllers
 {
-    [Authorize(Roles = "PUCITCafeAdmin")]
+    [Authorize(Roles = "PUCITCafeAdmin,AppAdministrator")]
     public class PUCITAdminController : Controller
     {
         PUCITRepository pucitRepository = new PUCITRepository();

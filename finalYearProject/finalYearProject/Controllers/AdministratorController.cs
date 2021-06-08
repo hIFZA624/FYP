@@ -31,7 +31,7 @@ namespace finalYearProject.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ViewResult> CreateRole(Roles roleS)
+        public async Task<IActionResult> CreateRole(Roles roleS)
         {
             if (ModelState.IsValid)
             {
@@ -40,70 +40,7 @@ namespace finalYearProject.Controllers
                 IdentityResult result = await roleManager.CreateAsync(identityRole);
                 if(result.Succeeded)
                 {
-                    List<Roles> listRoles = new List<Roles>();
-                    LinkedList<Roles> roling = new LinkedList<Roles>();
-                    var roles = roleManager.Roles;
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name == "AppAdministrator")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddFirst(rule);
-                        }
-                    }
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name == "PUCITCafeAdmin")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddLast(rule);
-                        }
-                    }
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name == "PharmacyCafeAdmin")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddLast(rule);
-                        }
-                    }
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name == "RestaurantAdmin")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddLast(rule);
-                        }
-                    }
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name == "RestaurantOwner")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddLast(rule);
-                        }
-                    }
-                    foreach (var role in roleManager.Roles)
-                    {
-                        if (role.Name != "AppAdministrator" && role.Name != "PUCITCafeAdmin" && role.Name != "PharmacyCafeAdmin" && role.Name != "RestaurantAdmin" && role.Name != "RestaurantOwner")
-                        {
-                            Roles rule = new Roles();
-                            rule.id = role.Id;
-                            rule.RoleName = role.Name;
-                            roling.AddLast(rule);
-                        }
-                    }
-                    return View(roling);
+                    return RedirectToAction("ViewRoles");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -179,8 +116,7 @@ namespace finalYearProject.Controllers
             }
             return View(roling);
         }
-        [HttpGet]
-        [Authorize]
+        [HttpGet]  
         public async Task<ViewResult> EditUserInRole(string roleId)
         {
            ViewBag.roleId = roleId;
@@ -206,7 +142,7 @@ namespace finalYearProject.Controllers
             return View("EditUserInRole", listRoles);
         }
         [HttpPost]
-        public async Task<ViewResult> EditUserInRole(List<UserRole> model, string roleId)
+        public async Task<IActionResult> EditUserInRole(List<UserRole> model, string roleId)
         {
             var role = await roleManager.FindByIdAsync(roleId);
 
@@ -226,7 +162,7 @@ namespace finalYearProject.Controllers
                     continue;
             }
 
-            return View("Return");
+            return RedirectToAction("ViewRoles");
         }
         public ViewResult Return()
         {
@@ -249,7 +185,13 @@ namespace finalYearProject.Controllers
                 model.Id = role.Id;
                 model.RoleName = role.Name;
             }
-          
+          foreach(var user in userManager.Users.ToList())
+            {
+                if (await userManager.IsInRoleAsync(user, role.Name))
+                {
+                    model.users.Add(user.UserName);
+                }
+            }
             return View(model);
         }
         [HttpPost]
@@ -275,20 +217,17 @@ namespace finalYearProject.Controllers
 
                         }
                     }
-                }
-                
+                }      
             }  
             return View(model);
         }
         [HttpGet]
         public ViewResult ListUsers()
         {
-          
                 List<Users> userlist = new List<Users>();
                 var users = userManager.Users;
                 foreach (var role in userManager.Users)
                 {
-
                     Users user = new Users();
                     user.id = role.Id;
                     user.FirstName = role.firstName;
@@ -354,6 +293,82 @@ namespace finalYearProject.Controllers
                 }
             }
             return View();
+        }
+        [HttpGet]
+        public ViewResult AddUser()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<ViewResult> AddUser(Registration userdata)
+        {
+            if (ModelState.IsValid)
+            {
+                var users1 = new ApplicationUser { Email = userdata.email, UserName = userdata.email, firstName = userdata.firstname, LastName = userdata.lastname };
+                var result = await userManager.CreateAsync(users1, userdata.password);
+                if (result.Succeeded)
+                {
+                    List<Users> userlist = new List<Users>();
+                    var users = userManager.Users;
+                    foreach (var role in userManager.Users)
+                    {
+
+                        Users user = new Users();
+                        user.id = role.Id;
+                        user.FirstName = role.firstName;
+                        user.LastName = role.LastName;
+                        user.email = role.Email;
+                        userlist.Add(user);
+
+                    }
+                    return View("ListUsers",userlist);
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+
+                }
+
+            }
+            return View(userdata);
+        }
+       public async Task<IActionResult> DeleteUser(string id)
+
+        {
+            var userFind = await userManager.FindByIdAsync(id);
+            if(userFind==null)
+            {
+                ViewBag.ErrorMessege = $"User with {id} cannot be found";
+                return View("Not Found");
+            }
+            else
+            {
+               var result= await userManager.DeleteAsync(userFind);
+                if(result.Succeeded)
+                {
+                    List<Users> userlist = new List<Users>();
+                    var users = userManager.Users;
+                    foreach (var role in userManager.Users)
+                    {
+
+                        Users user = new Users();
+                        user.id = role.Id;
+                        user.FirstName = role.firstName;
+                        user.LastName = role.LastName;
+                        user.email = role.Email;
+                        userlist.Add(user);
+
+                    }
+                    return View("ListUsers", userlist);
+                }
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+
+                }
+            }
+            return View("ListUsers");
+           
         }
     }
 }

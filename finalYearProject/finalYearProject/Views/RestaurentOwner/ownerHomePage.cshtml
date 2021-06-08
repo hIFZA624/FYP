@@ -1,0 +1,42 @@
+﻿@using finalYearProject.Models
+@model Restaurent
+@{
+    Layout = "~/Views/Shared/_Layout3.cshtml";
+    
+    var resid = ViewBag.resId;
+}
+<style>
+
+    body {
+        background-image: url('');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+</style>
+<section>
+    <div class="container-fluid">
+        <h1 class="text-center text-capitalize pt-3">@Model.NameOfRestaurants</h1>
+        <hr class="2-25 mx-auto">
+        <div class="row mb-5" style="margin-top:20px;">
+            <div class="col-lg-6 col-md-6 col-12">
+                <img src="~/images/@Model.PhotoPATH" alt="Denim Jeans" style="width:100%;height:300px;object-fit:cover;">
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <h3>Location : @Model.Location</h3>
+               
+                <p>Phone No: @Model.PhoneNo</p>
+                <p>Open Untill: @Model.OpenUntil</p>
+                <p>Delivery Charges: @Model.DeliveryCharges</p>
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

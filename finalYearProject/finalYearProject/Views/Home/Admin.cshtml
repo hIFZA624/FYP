@@ -1,5 +1,5 @@
 ﻿@{
-  
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 <div class="background">
@@ -12,3 +12,19 @@
         </div>
     </div>
 </div>
+When I meet this problem, I search to here but most of answers are trying to modify existing url. Here is another answer which works for me using localStorage.
+
+This answer is not useful
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Check if the current URL contains '#'
+        if (document.URL.indexOf("#") == -1) {
+            // Set the URL to whatever it was plus "#".
+            url = document.URL + "#";
+            location = "#";
+
+            //Reload the page
+            location.reload(true);
+        }
+    });
+</script>

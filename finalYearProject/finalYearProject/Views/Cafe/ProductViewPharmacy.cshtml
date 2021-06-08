@@ -1,0 +1,344 @@
+﻿@model finalYearProject.ViewModel.PUCITShowViewModel
+@{
+    Layout = "~/Views/Shared/_LayoutPharmacyCafe.cshtml";
+    var category = ViewBag.Categoryname;
+    var uname = ViewBag.uname;
+    var cafe = ViewBag.cafe;
+}
+<div class="increse" style="margin-left:5px;margin-top:5px;">
+    <h1 id="myBtn"><i class="fa fa-shopping-cart"></i><span>0</span></h1>
+</div>
+<!--End of Home PAGE-->
+<!-- Start of Menu Section-->
+<section id="menu" class="menu ">
+    <div class="container">
+        <!--<div class="section-title">
+            <h2 class="text-center font-weight-bold pt-5 text-capitalize">Menu Categories</h2>
+            <hr class="2-25 mx-auto pt-3">
+            <p>
+                A distinct section of a piece of writing, usually dealing
+                with a single theme and indicated by a new line, indentation, or
+                numbering.a distinct section of a piece of writing, usually dealing
+                with a single theme and indicated by a new line, indentation, or
+                numbering.
+            </p>
+        </div>-->
+        <!--START OF CARD DECTIOM-->
+        <div class="row mt-3 ">
+            @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
+            {
+                <!--START OF CARD -->
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <!-- <div class="card">
+
+                        <img src="~/images/@p.PhotoPath" class="card-img-top height" alt="...">
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a asp-action="ProductDetail" asp-route-id="@p.Id">@p.Name</a>
+                            </h5>
+                            <p class="card-text text-center">
+                                Price: $ @p.Price
+                            </p>
+                        </div>
+                    </div>
+                    -->
+                    <div class="card">
+                        <h1 style="display:none" class="overflow-hidden">@p.Id</h1>
+                        <img src="~/images/@p.PhotoPath" class="height" alt="Denim Jeans" style="width:100%">
+                        <h1>@p.Name</h1>
+                        <p class="price">Rs.@p.Price</p>
+                        <p style="display:none" class="price">@category</p>
+                        <a class="add-cart" href="#">Add to Cart</a>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+
+    </div>
+
+</section><!--Cart Viiew-->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 class="text-center text-capitalize mb-5">Product Cart</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="table-responsive">
+
+
+                    <table id="mytable" class="table">
+                        <!--  <thead>
+                            <tr>
+                              <th>Product</th>
+                              <th>Name</th>
+                              <th>Qty</th>
+                              <th>Price</th>
+
+                            </tr>
+                          </thead>
+                        <tbody class="table-body">
+                        </tbody>-->
+                    </table>
+                    <div>
+                        <button onclick="finshProduct()" style="float:right;margin-left:3px;" class="end btn btn-outline-success">
+                            Place Order
+                        </button>
+                        <button style="margin-bottom:10px;float:right;margin-left:3px;" class="btn btn-outline-info" onclick="deleteItems()">Clear Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Java Script Code-->
+<script type="text/javascript">
+
+        function finshProduct() {
+            console.log("Finshded Prodcut");
+
+                      console.log("Finshded Prodcut");
+            let items = [];
+            //product convert
+               let cart = localStorage.getItem("productsforadmin");
+            let cartItems = localStorage.getItem("productsInCart");
+
+            cartItems = JSON.parse(cartItems);
+           cart = JSON.parse(cart);
+            localStorage.clear();
+             var flag = "true";
+              if (cart != null) {
+
+                  cart.map(data => {
+                      if (data.userId == "@uname" && data.cafe =="@cafe") {
+                          flag = "false";
+                      }
+                    items.push(data);
+                })
+
+              }
+            if (flag == "true") {
+                if (cartItems != null) {
+
+                    cartItems.map(data => {
+                        items.push(data);
+                    })
+
+                }
+            }
+            else {
+                alert("You Already have some product in OrderList.You will be able to order further when you will receive your previous order.ThankYou :)");
+            }
+            localStorage.setItem("productsforadmin", JSON.stringify(items));
+            window.location.reload();
+        }
+        /*const cartBox=document.querySelector(".modal-content");
+        const cardboxtable=cartBox.querySelector("table");
+        let tableData="";
+        tableData+="<tr><th>Item Name      </th><th>item no     </th><th>item price   </th><th>     item Description    </th></tr>";
+        if(cartBox &&  JSON.parse(localStorage.getItem("productsInCart"))
+        {
+        cartBox.innerHTML="";
+        Object.values(JSON.parse(localStorage.getItem("productsInCart")).map(item=>{
+          cartBox.innerHTML+
+        }))
+        *?
+          /*JSON.parse(localStorage.getItem("productsInCart")).map(data=>{
+        tableData+="<tr><th>"+data.Name+"</th><th>"+data.inCart+"</th><th>"+data.Price+"</th><th>"+data.Para+"</th></tr>";
+          });*/
+        //}
+        //cardboxtable.innerHTML=tableData;
+
+        localStorage.setItem("id", 0);
+        function displayCart() {
+            let cartItems = localStorage.getItem("productsInCart");
+            cartItems = JSON.parse(cartItems);
+            let cartBox = document.querySelector(".modal-content");
+            let tablecontent = cartBox.querySelector("table");
+            let tabledata = "";
+            tabledata += `<thead class="make">
+                                            <tr>
+                                             
+         <th>Product Category</th>
+                                              <th>Product Name</th>
+                                              <th>Qty</th>
+                                              <th>Price</th>
+                                               <th></th>
+
+                                            </tr><thead>`;
+            if (cartItems) {
+                Object.values(cartItems).map(item => {
+                    tabledata += `<tbody >
+
+
+<tr>
+
+                                            
+                                          
+
+                                               <td>
+                                                  <p>${item.Para}</p>
+                                              </td >
+
+                                              <td>
+                                                <p>${item.Name}</p>
+                                              </td>
+
+                                              <td>
+                                                <div class="button-conatiner">
+                                                <p>${item.inCart}</p>
+                                                </div>
+                                              </td>
+
+                                              <td>
+                                                 <p>${item.Price}</p>
+                                              </td >
+
+                                                <td>
+                                                <button class="removeItem btn btn-danger">Remove</button>
+                                              </td  >
+
+                                            </tr>
+
+                                            <tbody>
+
+                                           `;
+                    tablecontent.innerHTML = tabledata;
+                })
+            }
+        }
+        function deleteItems() {
+            localStorage.clear();
+            window.location.reload();
+        }
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        var carts = document.querySelectorAll(".add-cart");
+        var button = document.getElementsByClassName('add-cart');
+
+        for (but of button) {
+            but.addEventListener('click', (e) => {
+
+                var parent = e.target.parentNode;
+                cartNumbers(parent);
+                console.log(parent);
+            });
+        }
+        function onLoadCardNumbers() {
+            let productNumbers = localStorage.getItem("cartNumbers");
+            if (productNumbers) {
+                document.querySelector(".increse span").textContent = productNumbers;
+            }
+        }
+        function cartNumbers(product) {
+
+            let productNumbers = localStorage.getItem("cartNumbers");
+            productNumbers = parseInt(productNumbers);
+            if (productNumbers) {
+                localStorage.setItem("cartNumbers", productNumbers + 1);
+                document.querySelector(".increse span").textContent = productNumbers + 1;
+            }
+            else {
+                localStorage.setItem("cartNumbers", 1);
+                document.querySelector(".increse span").textContent = 1;
+            }
+            setItems(product);
+            /* let products=localStorage.getItem("product");
+                localStorage.setItem("product",product);
+           */
+        }
+
+        function setItems(product) {
+            let id = product.children[0].textContent;
+            let name = product.children[2].textContent;
+            let price = product.children[3].textContent;
+            let para = product.children[4].textContent;
+
+            console.log(id);
+            let items = [];
+
+            let pro = new Object();
+            pro.cafe = "@cafe";
+            pro.userId="@uname";
+            pro.Id = id;
+            pro.Name = name;
+            pro.Price = price;
+            pro.Para ="@category";
+            pro.inCart = 1;
+            pro.time = "Pending";
+            console.log("The product clicked is", product);
+            //product convert
+            let cartItems = localStorage.getItem("productsInCart");
+            cartItems = JSON.parse(cartItems);
+
+            if (cartItems === null) {
+                items.push(pro);
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                  window.location.reload();
+            }
+            else {
+                cartItems.map(data => {
+                    if (pro.Name === data.Name) {
+                        pro.inCart = data.inCart + 1;
+                    }
+                    else {
+
+
+                        items.push(data);
+                    }
+                })
+                items.push(pro);
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                  window.location.reload();
+            }
+        }
+        onLoadCardNumbers();
+        displayCart();
+        const remove = document.getElementsByClassName('removeItem');
+        for (var i = 0; i < remove.length; i++) {
+            let removebtn = remove[i];
+            let items = [];
+
+            removebtn.addEventListener('click', () => {
+                console.log("hello");
+                let cartItems = localStorage.getItem("productsInCart");
+                cartItems = JSON.parse(cartItems);
+                const number = event.target.parentElement.parentElement.children[3].children[0].textContent;
+                cartItems.map(data => {
+                    if (data.Name != event.target.parentElement.parentElement.children[2].children[0].textContent) {
+                        items.push(data);
+                    }
+                })
+                let productNumbers = localStorage.getItem("cartNumbers");
+                productNumbers = parseInt(productNumbers);
+                if (productNumbers);
+                {
+                    localStorage.setItem("cartNumbers", productNumbers - number);
+                    document.querySelector(".increse span").textContent = productNumbers - number;
+                }
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                window.location.reload();
+            })
+        }
+
+</script>
+
+
