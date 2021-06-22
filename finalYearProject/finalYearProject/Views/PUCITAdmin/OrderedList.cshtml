@@ -1,7 +1,7 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITShowViewModel
 @{
-
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutCafe.cshtml";
 }
 <div class="modal-content">
@@ -62,8 +62,6 @@
             Object.values(cartItems).map(item => {
                 if (item.cafe == "pucitcafe") {
                     tabledata += `<tbody >
-
-
 <tr>
                                                 <td>
                                                    
@@ -92,7 +90,7 @@
                                                   </td>
 
                                                     <td>
-                                                       <input value="${item.time}"  type="text" placeholder="Enter PickUpTime" class="form-control"  >
+                                                       <input type="time" value="${item.time}"  type="text" placeholder="Enter PickUpTime" class="form-control"  >
                                                    </td>
 
                                                     <td>

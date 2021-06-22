@@ -1,7 +1,68 @@
-﻿
+﻿@using finalYearProject.Models;
+@model RestaurentMenu
 @{
-    ViewData["Title"] = "EditMenue";
+    var uname = ViewBag.uname;
+    var resid = ViewBag.resid;
+    Layout = "~/Views/Shared/_Layout1.cshtml";
 }
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <h1 class=" text-center">Update a Menu Item</h1>
+            <br />
+            <form enctype="multipart/form-data" method="post" asp-action="EditItem" asp-route-uname="@uname" asp-route-RestaurentID="@resid">
+                <div asp-validation-summary="All" class="text-danger"></div>
 
-<h1>EditMenue</h1>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="RestaurentID">Restaurant Id</label><br>
+                    <input class="form-control" asp-for="RestaurentID" placeholder="Enter  Restaurant Id " readonly><br>
+                    <span asp-validation-for="RestaurentID"> </span>
+                </div>
+                <input type="hidden" class="form-control" asp-for="MenuID" placeholder="Enter  Restaurant Id " readonly><br>
+                <div>
+                    <label class="text-warning font-weight-bold" asp-for="NameOfItem">Name of Item</label><br>
+                    <input class="form-control" asp-for="NameOfItem" placeholder="Enter item Name "><br>
+                    <span asp-validation-for="NameOfItem"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="Price">Price</label><br>
+                    <input class="form-control" asp-for="Price" placeholder="Enter item price "><br>
+                    <span asp-validation-for="Price"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="Quantity">Quantity</label><br>
+                    <input class="form-control" asp-for="Quantity" placeholder="Enter Quantity"><br>
+                    <span asp-validation-for="Quantity"></span>
+                </div>
+                <div>
+                    <label asp-for="unit" class="text-warning font-weight-bold ">Select Unit</label>
+                    <select asp-for="unit" class="text-muted custom-select" required>
+                        <option value="kilogram">Select Unit</option>
+                        <option value="Kilogram">Kilogram</option>
+                        <option value="Piece">Piece</option>
+                        <option value="Box">Box</option>
+                        <option value="Liter">Liter</option>
+
+                    </select>
+                </div>
+                <br />
+                <div class="custom-file">
+                    <div>
+                        <input class="form-control bg-transparent" asp-for="Photo2"><br>
+                    </div>
+                </div>
+                <div>
+                    <input class="bg-success" type="submit" value="Update Item" />
+                    <button class="bg-danger" asp-route-restaurentID="@Model.RestaurentID" asp-action="Details">Cancel</button>
+                </div>
+
+            </form>
+
+
+        </div>
+    </div>
+</section>
+
+
 

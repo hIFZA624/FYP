@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-2 col-lg-3 "></div>
             <div class="col-md-6 col-sm-8 col-lg-6">
-                <form  class="add" method="post" action="/RestaurentOwner/Ownerlogin">
+                <form  class="add" method="post" asp-action="Ownerlogin" asp-route-uname="@uname">
                     <h1 style="text-align:center" class="color">Are You Restaurant Owner?</h1>
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">

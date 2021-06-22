@@ -1,0 +1,80 @@
+﻿@model List<finalYearProject.Models.Receipt>
+
+@{ Layout = "~/Views/Shared/_Layout3.cshtml";
+     var resid = ViewBag.resId;
+    var uname = ViewBag.uname;
+    }
+@if (Model.Any())
+{
+    <section class="mainpart">
+        <div class="container">
+            <div class="col-lg-12 m-auto d-block card p-3 decorate">
+                <br />
+                <h2 class="text-center">Restaurant Order List</h2>
+                <div>
+                    <table class="table table-dark table-hover table-striped ">
+
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    Items Present
+                                </th>
+                                <th>
+                                    Total Amount
+                                </th>
+                                <th>
+                                    Order Place Date & Time
+                                </th>
+                                <th>
+                                    Required Delivery Time
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (finalYearProject.Models.Receipt r in Model)
+                            {
+
+                                <tr>
+
+
+                                    <td>
+                                        @r.NoOfItems
+
+                                    </td>
+                                    <td>
+                                        Rs @r.TotalAmount
+                                    </td>
+                                    <td>
+                                        @r.OrderTime
+
+                                    </td>
+                                    <td>
+                                        @r.UserTime
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-route-uname="@uname" asp-action="Detail" asp-route-RestaurentID="@resid" asp-route-receiptID="@r.ReceiptID">Receipt</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+
+                    </table>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+}
+else
+{
+    <h5 class="text-center mt-4">No Items in Order List</h5>
+}

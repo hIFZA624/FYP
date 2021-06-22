@@ -1,7 +1,7 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITShowViewModel
 @{
-
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
 }
 <div class="modal-content">
@@ -61,8 +61,8 @@
         let tabledata = "";
         tabledata += `<thead class="make">
                                                 <tr>
-    <th>User Id</th>
-                                                  <th>Product Id</th>
+    <th>User Name</th>
+                                                
              <th>Product Category</th>
                                                   <th>Product Name</th>
                                                   <th>Qty</th>
@@ -79,15 +79,10 @@
 <tr>
     <td>
                                                     <div class="product-img" >
-                                                      <p>${item.userId}</p>
+                                                      <p>${item.email}</p>
                                                     </div>
                                                   </td>
-                                                  <td>
-                                                    <div class="product-img" >
-                                                      <p>${item.Id}</p>
-                                                    </div>
-                                                  </td>
-
+                                                 
                                                    <td>
                                                       <p>${item.Para}</p>
                                                   </td >
@@ -108,7 +103,7 @@
                                                   </td>
 
                                                     <td>
-                                                       <input value="${item.time}"  type="text" placeholder="Enter PickUpTime" class="form-control"  >
+                                                       <input type="time" value="${item.time}"  type="text" placeholder="Enter PickUpTime" class="form-control"  >
                                                    </td>
 
                                                     <td>

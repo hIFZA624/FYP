@@ -1,0 +1,68 @@
+﻿@model List<finalYearProject.Models.CartAndOrder>
+
+@{ Layout = "~/Views/Shared/_Layout2.cshtml";
+    var RestaurentID = ViewBag.RestaurentID;
+    var uname = ViewBag.uname;
+    
+}
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-12 m-auto d-block card p-3 decorate">
+            <br />
+            <h2 class="text-center">A Order Detail</h2>
+            <div>
+                <table class="table table-dark table-hover table-striped ">
+                    <thead>
+                        <tr>
+                            <th>
+                                Name Of Item
+                            </th>
+                            <th>
+                                Price
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (finalYearProject.Models.CartAndOrder r in Model)
+                        {
+                            @if (r.ReceiptID == @ViewBag.ReceiptID)
+                            {
+                                <tr>
+
+                                    <td>
+                                        @r.NameOfItem
+                                    </td>
+                                    <td>
+                                        @r.Price
+
+                                    </td>
+                                    <td>
+                                        @r.Quantity
+
+
+                                    </td>
+
+
+
+                                </tr>
+                            }}
+
+                    </tbody>
+
+
+
+
+
+                </table>
+
+
+            </div>
+        </div>
+
+    </div>
+</section>
+

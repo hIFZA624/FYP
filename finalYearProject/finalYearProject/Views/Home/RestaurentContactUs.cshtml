@@ -1,0 +1,106 @@
+﻿@model finalYearProject.Models.ContactUs
+@{   Layout = "~/Views/Shared/_LayoutCustomerApp.cshtml";
+
+    var uname = ViewBag.uname;
+
+    }
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Style inputs */
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+    /* Style the container/contact section */
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 10px;
+    }
+
+    /* Create two columns that float next to eachother */
+    .column {
+        float: left;
+        width: 50%;
+        margin-top: 6px;
+        padding: 20px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+</style>
+
+<div class="container">
+    <div style="text-align:center">
+        <h2>Contact Us</h2>
+        <p>Swing by for a cup of coffee, or leave us a message:</p>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="https://media.istockphoto.com/photos/emails-with-blurred-city-lights-picture-id1134247993?k=6&m=1134247993&s=612x612&w=0&h=dzlvudQgSYvf4NIul9d61zJ9OhoJp2kNqpq_kzhxgjQ=" style="width:100%">
+        </div>
+        <div class="column">
+            <form method="post" asp-action="RestaurentContactUs" asp-route-uname="@uname">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <label class="text-warning font-weight-bold font-italic" asp-for="FirstName"></label><br>
+                    <input class="bg-transparent" asp-for="FirstName" placeholder="Enter  First Name "><br>
+                    <span asp-validation-for="FirstName"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold font-italic" asp-for="LastName"></label><br>
+                    <input class="bg-transparent" asp-for="LastName" placeholder="Enter  Your LastName"><br>
+                    <br />
+                    <span asp-validation-for="LastName"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold font-italic" asp-for="Email"></label><br>
+                    <input class="bg-transparent" asp-for="Email" placeholder="Enter  Enter Email"><br>
+                    <br />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold font-italic " asp-for="Message"></label><br>
+                    <textarea class="bg-transparent" asp-for="Message" placeholder="Enter Your Message"></textarea><br>
+                    <span asp-validation-for="Message"></span>
+                </div>
+
+                <br />
+
+                <input class="bg-success" type="submit" value="Submit" /><br>
+                <br />
+
+
+            </form>
+        </div>
+    </div>
+</div>
+}
+

@@ -2,7 +2,7 @@
 
 @{
     Layout = "~/Views/Shared/_Layout1.cshtml";
-
+    var uname = ViewBag.uname;
     String resname="";
 }
     <section class="mainpart">
@@ -34,7 +34,7 @@
                                     @rm.NameOfItem
                                 </td>
                                 <td>
-                                    Rs. @rm.Price
+                                    @rm.Price
 
                                 </td>
                                 <td>
@@ -47,8 +47,8 @@
                                 </td>
                                 <td>
                                     <!--  <a asp-route-restaurentID="@rm.RestaurentID" asp-action="AddMenu" class="btn btn-info">View</a>-->
-                                    <a asp-route-restaurentID="@rm.RestaurentID" asp-action="Edit" class="btn btn-warning">Update</a>
-                                    <a asp-action="Delete" asp-route-restaurentID="@rm.RestaurentID" class="btn btn-danger">Delete</a>
+                                    <a asp-route-restaurentID="@rm.RestaurentID" asp-route-menuid="@rm.MenuID" asp-route-uname="@uname" asp-action="EditItem" class="btn btn-warning">Update</a>
+                                    <a asp-action="DeleteItem" asp-route-menuid="@rm.MenuID" asp-route-uname="@uname" asp-route-restaurentID="@rm.RestaurentID" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -57,3 +57,4 @@
             </div>
         </div>
     </section>
+   

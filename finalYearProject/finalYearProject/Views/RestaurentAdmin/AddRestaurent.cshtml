@@ -1,6 +1,8 @@
 ﻿@using finalYearProject.Models;
 @model Restaurent
-@{ Layout = "~/Views/Shared/_Layout1.cshtml"; }
+@{ 
+    var uname = ViewBag.uname;
+    Layout = "~/Views/Shared/_Layout1.cshtml"; }
 
 
 
@@ -11,7 +13,7 @@
             <br />
             <h1 class=" text-center">Add a Restaurant</h1>
             <br />
-            <form enctype="multipart/form-data" method="post" action="/RestaurentAdmin/AddRestaurent">
+            <form enctype="multipart/form-data" method="post" asp-action="AddRestaurent" asp-route-uname="@uname">
                 <div class="text-danger" asp-validation-summary="All"></div>
                 <div>
                     <label class="text-warning font-weight-bold " asp-for="RestaurentID">Restaurant Id</label><br>
@@ -46,7 +48,7 @@
                 </div>
                 <div>
                     <label class="text-warning font-weight-bold " asp-for="DeliveryCharges "></label><br>
-                    <input class="form-control" asp-for="DeliveryCharges " placeholder="Enter Delivery Charges "><br>
+                    <input  class="form-control" asp-for="DeliveryCharges " placeholder="Enter Delivery Charges "><br>
 
                     <span asp-validation-for="DeliveryCharges "></span>
                 </div>

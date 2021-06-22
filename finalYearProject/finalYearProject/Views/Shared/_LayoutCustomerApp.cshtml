@@ -162,29 +162,29 @@
                                 <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="Customer">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page">About</a>
+                                <a class="nav-link active" asp-route-uname="@uname" asp-action="About" aria-current="page">About</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Offer Places</a>
                                 <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
                                     <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="Cafe" asp-action="HomePage">Cafeteria</a></li>
-                                    <li><a class="dropdown-item" href="#">Restaurant</a></li>
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="Restaurent" asp-action="RestaurentHomePage">Restaurant</a></li>
 
                                 </ul>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Settings</a>
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
                                 <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
                                     <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a></li>
                                     <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="userProfile">Profile</a></li>
-
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="RestaurentOwner" asp-action="OwnerLogin">Restaurant Owner?</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="CommentBox" asp-route-uname="@uname">Comment</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="RestaurentContactUs" asp-route-uname="@uname">Contact Us</a></li>
                                 </ul>
                             </li>
+                           
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Contact Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" asp-action="Logout">Logout</a>
+                                <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Logout">Logout</a>
                             </li>
                         </ul>
                     </form>

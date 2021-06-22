@@ -70,3 +70,10 @@
     </div>
 </body>
 </html>
+<script>
+    let items = [];
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                let productNumbers = localStorage.getItem("cartNumbers");
+                productNumbers = 0;
+                localStorage.setItem("cartNumbers", productNumbers);
+</script>

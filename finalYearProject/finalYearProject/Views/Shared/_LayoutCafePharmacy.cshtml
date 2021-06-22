@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@{ 
+    var uname = ViewBag.uname;
+}
 <html>
 <head>
     <link href='https://fonts.googleapis.com/css?family=Baloo 2' rel='stylesheet'>
@@ -115,7 +118,7 @@
     <header>
         <div class="tophead">
             <div class="brandlogo">
-              Pharmacye Cafe Admin
+              Pharmacy Cafe Admin
             </div>
             <div>
                 <span class="menulines" onClick="openNav()">&#9776;</span>
@@ -126,18 +129,18 @@
     </header>
     <div class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-
+        <a asp-controller="Home" asp-route-uname="@uname" asp-action="Admin"><i class="fa fa-home"></i> Home</a>
         <button class="dropdown-btn">
             <i class="fa fa-list-alt" aria-hidden="true"></i>
             Menu Category  <i class="fa fa-caret-down"></i>
 
         </button>
         <div class="dropdown-container">
-            <a asp-action="CategoryView"> View Categories</a>
-            <a asp-action="AddCategory"> Add Category</a>
+            <a asp-action="CategoryView" asp-route-uname="@uname"> View Categories</a>
+            <a asp-action="AddCategory" asp-route-uname="@uname"> Add Category</a>
         </div>
-        <a asp-action="AddProduct"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
-        <a asp-action="OrderedList"><i class="fa fa-list"></i> Ordered List</a>
+        <a asp-action="AddProduct" asp-route-uname="@uname"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
+        <a asp-action="OrderedList" asp-route-uname="@uname"><i class="fa fa-list"></i> Ordered List</a>
         <button class="dropdown-btn">
             <i class="fa fa-product-hunt" aria-hidden="true"></i>
             View Products  <i class="fa fa-caret-down"></i>
@@ -146,12 +149,12 @@
         <div class="dropdown-container">
             @foreach (finalYearProject.Models.PUCITCafeCategory category in Model.Category)
             {
-                <a asp-action="ProductView" asp-route-categoryName="@category.CategoryName">@category.CategoryName</a>
+                <a asp-action="ProductView" asp-route-uname="@uname" asp-route-categoryName="@category.CategoryName">@category.CategoryName</a>
 
             }
         </div>
 
-        <a asp-controller="Home" asp-action="Admin"><i class="fa fa-sign-out"></i> Exit</a>
+        <a asp-controller="Home" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
     </div>
     <div>
         @RenderBody()

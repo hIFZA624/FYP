@@ -2,7 +2,8 @@
     @{
         var uname= ViewBag.uname;
         var pucit = "pucitcafe";
-          var pharmacy = "pharmacycafe";
+        var pharmacy = "pharmacycafe";
+       var email= ViewBag.email;
     }
     <html>
     <head>
@@ -53,7 +54,16 @@
                 justify-content: center;
                 margin-bottom: 5%;
             }
-
+                  .h3{
+            color:white;
+        }
+        .p {
+            color:white;
+            text-align:center;
+            line-height:75px;
+            font-size:large;
+            background-color:black;
+        }
             .content-4 .nav-tabs {
                 margin: 2px;
                 border: none;
@@ -237,16 +247,17 @@
         <header>
             <div class="background">
                 <div>
+
                     <!-- sTART OF hOME PAGE-->
                     <nav class="navbar navbar-light bg-dark">
                         <div class="container-fluid" style="padding:10px;">
-                            <a class="nav-link disabled"  href="#" aria-disabled="true">Cafeteria Management System</a>
+                            <a class="nav-link disabled" href="#" aria-disabled="true">Cafeteria Management System</a>
                             <form class="d-flex">
                                 <ul class=" nav justify-content-end">
                                     <li class="nav-item">
                                         <a class="nav-link active" aria-current="page" asp-action="HomePage" asp-route-uname="@uname">Home</a>
                                     </li>
-                                    
+
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Cafe Options</a>
                                         <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
@@ -257,131 +268,28 @@
                                     </li>
 
                                     <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-controller="Home" asp-route-uname="@uname" asp-action="Customer">Exit</a>
+                                        <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Logout">Logout</a>
                                     </li>
                                 </ul>
                             </form>
                         </div>
                     </nav>
+                    <h1 class="text-white text-center" style="padding-top:100px;">Welcome to Cafeteria Management System</h1>
+                    <h3 class="text-white text-center">We are providing this for Years.</h3>
                 </div>
             </div>
             <!--Start of caurasel -->
-        </header>    
+        </header>
 
-      
+
         <section>
             <div class="container">
-                <h1 class="text-center text-capitalize pt-3">Most Demanded</h1>
+                <h1 class="text-center text-capitalize pt-3">Enjoy In Cafe System</h1>
                 <hr class="2-25 mx-auto">
-                <div class="content-4">
-                    <ul class="nav" role="tablist">
-                        <li class="nav-item nav-tabs">
-                            <a href="#tra" class="active tab-item" role="tab" data-toggle="tab">
-                                <i class="fas fa-drumstick-bite"></i>
-                                <span padding>Drum Sticks</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-tabs">
-                            <a href="#fastfood" class="tab-item" role="tab" data-toggle="tab">
-                                <i class="fas fa-hamburger"></i>
-                                <span>Burger</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-tabs">
-                            <a href="#snack" class="tab-item" role="tab" data-toggle="tab">
-                                <i class="fas fa-cookie"></i>
-                                <span>Cookie</span>
-                            </a>
-                        </li>
-                        <li class="nav-item nav-tabs">
-                            <a href="#drink" class="tab-item" role="tab" data-toggle="tab">
-                                <i class="fas fa-glass-cheers"></i>
-                                <span>Drink</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <!--Tabs-->
-                    <div class="tab-content">
-                        <div class="active tab-pane" role="tab" id="tra">
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-3 offset-md-1">
-                                    <h4>Traditional Food you Love the Most</h4>
-                                </div>
-                                <div class="col-md-7">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" role="tab" id="snack">
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-3 offset-md-1">
-                                    <h4>Snacks you Love the Most</h4>
-                                </div>
-                                <div class="col-md-7">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="fastfood">
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-3 offset-md-1">
-                                    <h4>Fast Food you are dying to eat</h4>
-                                </div>
-                                <div class="col-md-4">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home
-                                    </p>
-                                </div>
-                                <div class="col-md-4">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" role="tabpanel" id="drink">
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-3 offset-md-1">
-                                    <h4>Drinks you feel fizzy after that</h4>
-                                </div>
-                                <div class="col-md-4">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home
-                                    </p>
-                                </div>
-                                <div class="col-md-4">
-                                    <p>
-                                        A snack is a small portion of food generally
-                                        eaten between meals. Snacks come in a variety of forms including
-                                        packaged snack foods and other processed foods, as well as items made
-                                        from fresh ingredients at home
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                <p>
+                    Cafeteria System provides you with options of Pucit cafe and Pharmacy cafe.
+                    You can order from any cafe.When you are done with order you will get pickup time.
+                </p>
             </div>
         </section>
         <!--End of Home PAGE-->
@@ -418,7 +326,7 @@
                                 <div class="back-content">
                                     <h1 class="text-uppercase font-weight-light">Have</h1>
                                     <h3 class="mb-3">Fun</h3>
-                                    <a asp-route-uname="@uname" asp-action="PucitCafe" class="btn btn-warning hwr-right my-4 text-capitalize">Get Started</a>
+                                    <a asp-route-uname="@uname" asp-route-cafe="@pucit" asp-action="PucitCafe" class="btn btn-warning hwr-right my-4 text-capitalize">Get Started</a>
                                 </div>
                             </div>
                         </div>
@@ -438,7 +346,7 @@
                                 <div class="back-content">
                                     <h1 class="text-uppercase font-weight-light">Have</h1>
                                     <h3 class="mb-3">Fun</h3>
-                                    <a asp-route-uname="@uname" asp-action="PharmacyCafe" class="btn btn-warning hwr-right my-4 text-capitalize">Get Started</a>
+                                    <a asp-route-uname="@uname" asp-route-cafe="@pharmacy" asp-action="PharmacyCafe" class="btn btn-warning hwr-right my-4 text-capitalize">Get Started</a>
                                 </div>
                             </div>
 
@@ -448,6 +356,84 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container mt-4">
+                <div class="row ">
+
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery7.jpg" alt="Card image">
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery4.jpg" alt="Card image">
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery3.jpg" alt="Card image">
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery8.jpg" alt="Card image">
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery9.jpg" alt="Card image">
+                    </div>
+                    <div class="col-lg-4 col-md-2 col-12 mb-4">
+                        <img class="img-fluid" src="~/images/gallery2.jpg" alt="Card image">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--start of contact section-->
+
+
+        <footer>
+            <div style="background-color:#111111;padding:30px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <h3 class="h3">Offers</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <h3 class="h3">Manage</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                            <h3 class="h3">Restaurant Owner</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a asp-route-uname="@uname" asp-controller="Restaurent" asp-action="RestaurentHomePage">Restaurant</a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-route-uname="@uname" asp-action="changepasswd" asp-controller="Home">Change Password</a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                            <a asp-controller="RestaurentOwner" asp-action="OwnerLogin" asp-route-uname="@uname">Login</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a asp-route-uname="@uname"></a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-route-uname="@uname" asp-action="userProfile" asp-controller="Home">Profile</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a href="#"></a>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-route-uname="@uname" asp-action="RestaurentContactUs">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="p"> All Rights Reserved by Food Authority Pakistan2021 </p>
+
+        </footer>
         <script>
             /* When the user clicks on the button,
             toggle between hiding and showing the dropdown content */
@@ -470,7 +456,7 @@
             }
         </script>
         <!-- Start of Menu Section-->
-        
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

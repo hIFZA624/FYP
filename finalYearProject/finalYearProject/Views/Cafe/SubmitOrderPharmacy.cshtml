@@ -133,22 +133,17 @@
 
             removebtn.addEventListener('click', () => {
                 console.log("hello");
-                let cartItems = localStorage.getItem("productsInCart");
+                let cartItems = localStorage.getItem("productsforadmin");
                 cartItems = JSON.parse(cartItems);
-                const number = event.target.parentElement.parentElement.children[3].children[0].textContent;
+                console.log(event.target.parentElement.parentElement.children[2].children[0].textContent);
+                const number = event.target.parentElement.parentElement.children[2].children[0].textContent;
                 cartItems.map(data => {
-                    if (data.Name != event.target.parentElement.parentElement.children[2].children[0].textContent) {
+                    if (data.Name != event.target.parentElement.parentElement.children[1].children[0].textContent) {
                         items.push(data);
                     }
                 })
-                let productNumbers = localStorage.getItem("cartNumbers");
-                productNumbers = parseInt(productNumbers);
-                if (productNumbers);
-                {
-                    localStorage.setItem("cartNumbers", productNumbers - number);
-                    document.querySelector(".increse span").textContent = productNumbers - number;
-                }
-                localStorage.setItem("productsInCart", JSON.stringify(items));
+                
+                localStorage.setItem("productsforadmin", JSON.stringify(items));
                 window.location.reload();
             })
         }

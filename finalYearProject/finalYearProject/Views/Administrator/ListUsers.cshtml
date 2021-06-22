@@ -1,5 +1,6 @@
 ﻿@model List<finalYearProject.Models.Users>
 @{
+      var uname= ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 <div class="container">
@@ -9,7 +10,7 @@
                 <br />
                 <h2 class=" text-center">All Users</h2>
                 <hr />
-                <a asp-action="AddUser"  class="btn btn-primary mb-3">Add New User</a>
+                <a asp-action="AddUser" asp-route-uname="@uname"  class="btn btn-primary mb-3">Add New User</a>
                 @foreach (finalYearProject.Models.Users user in Model)
                 {
                     <div class="card mb-3">
@@ -21,7 +22,7 @@
                         </div>
                         <div class="card-footer">
                             <form method="post" asp-route-id="@user.id" asp-action="DeleteUser">
-                                <a asp-action="EditUser" asp-route-id="@user.id" class="btn btn-primary">Edit</a>
+                                <a asp-action="EditUser" asp-route-uname="@uname" asp-route-id="@user.id" class="btn btn-primary">Edit</a>
                                 <button type="submit"  class="btn btn-danger">Delete</button>
                             </form>
                         </div>

@@ -1,7 +1,7 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITCafeViewModel
 @{
-    
+   var uname= ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutCafe.cshtml";
 }
 <section class="mainpart">
@@ -11,7 +11,8 @@
             <br />
             <h1 class=" text-center text-warning">Add a Product</h1>
             <hr />
-            <form enctype="multipart/form-data" method="post" action="/PUCITAdmin/AddProduct" class="form-container">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form enctype="multipart/form-data" method="post" asp-action="AddProduct" asp-route-uname="@uname" class="form-container">
                 <div class="form-group">
                     <label class="form-label text-primary">Select Product Category</label>
 
@@ -25,12 +26,12 @@
 
                         }
                         <!-- <option>Select One Option</option>
-                        <option value="BreakFast">Breakfast</option>
-                        <option value="Lunch">Lunch</option>
-                        <option value="FastFood">FastFood</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="Drinks">Drinks</option>
-                          -->
+                <option value="BreakFast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="FastFood">FastFood</option>
+                <option value="Snacks">Snacks</option>
+                <option value="Drinks">Drinks</option>
+                  -->
                     </select>
                 </div>
                 <div class="form-group">

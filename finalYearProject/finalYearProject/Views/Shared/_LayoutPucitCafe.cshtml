@@ -224,7 +224,7 @@
                                         <a class="nav-link active" aria-current="page" asp-route-email="@email" asp-route-cafe="@cafe" asp-route-uname="@uname" asp-action="SubmitOrder">Ordered List</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link active" asp-route-uname="@uname" asp-action="HomePage" aria-current="page" onclick="confirm()">Exit</a>
+                                        <a class="nav-link active" asp-controller="Home" asp-action="Logout" aria-current="page" onclick="confirm()">Logout</a>
                                     </li>
                                 </ul>
                             </form>
@@ -236,8 +236,16 @@
         <!-- Start of Menu Section-->
      <script>
          function confirm() {
-              let cartItems = localStorage.getItem("productsInCart");
-         }
+               
+           
+            let items = [];
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                let productNumbers = localStorage.getItem("cartNumbers");
+                productNumbers = 0;
+                localStorage.setItem("cartNumbers", productNumbers);
+                
+        }
+         
      </script>
         <!-- Start of Menu Section-->
 

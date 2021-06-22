@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using finalYearProject.Models;
+using finalYearProject.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,7 @@ namespace finalYearProject.Controllers
    
     public class HomeController : Controller
     {
+        PUCITRepository pucitRepository = new PUCITRepository();
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly SignInManager<ApplicationUser> signInManager;
@@ -56,7 +58,6 @@ namespace finalYearProject.Controllers
                     ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
 
                 }
-
                 if (res == true && result.Succeeded)
                 {
                     return View("Admin");
@@ -176,8 +177,88 @@ namespace finalYearProject.Controllers
         }
         public async Task<ActionResult> Logout()
         {
+            pucitRepository.Cart.Clear();
+            pucitRepository.ClearAllCart();
             await  signInManager.SignOutAsync();
             return View("Login");
+        }
+        [Authorize]
+        [HttpGet]
+        public async Task<ViewResult> CommentBox(string uname)
+        {
+            var userFind = await userManager.FindByIdAsync(uname);
+            ViewBag.uname = uname;
+            ViewBag.name = userFind.firstName;
+            ViewModel2 vm2 = new ViewModel2();
+            vm2.Comment = pucitRepository.comments;
+            
+            return View("CommentBox", vm2);
+        }
+        [HttpPost]
+        public ViewResult CreateComment(ViewModel2 c,string uname,string name)
+        {
+            //RestaurentRepository.receipts.Find(r => r.ReceiptID == ReceiptID);
+            ViewBag.uname = uname;
+            ViewBag.name = name;
+            CommentBox cb = new CommentBox();
+            cb.Comment = c.commentBox.Comment;
+            cb.Name = name;
+            cb.UserID = uname;
+           DateTime dt = DateTime.Now;
+            cb.date=dt.ToShortDateString();
+
+
+            pucitRepository.AddCommentD(cb);
+           
+            ViewModel2 viewModel2 = new ViewModel2();
+            viewModel2.Comment = pucitRepository.comments;
+
+          
+            return View("CommentBox", viewModel2);
+
+        }
+        [HttpGet]
+        public ViewResult DeleteComment(int CommentNo,string uname,string name)
+        {
+            ViewBag.uname = uname;
+            ViewBag.name = name;
+            CommentBox c = pucitRepository.comments.Find(c => c.CommentNo == CommentNo);
+            pucitRepository.comments.Remove(c);
+           pucitRepository.DeleteComment(c.CommentNo);
+            ViewModel2 vm2 = new ViewModel2();
+            vm2.Comment = pucitRepository.comments;
+            vm2.commentBox = c;
+            return View("CommentBox", vm2);
+
+        }
+        [HttpGet]
+        public ViewResult UpdateComment(int CommentNo,string uname, string name)
+        {
+            ViewBag.uname = uname;
+            ViewBag.name = name;
+            CommentBox c =pucitRepository.comments.Find(c => c.CommentNo == CommentNo);
+            return View("UpdateComment", c);
+
+        }
+        [HttpPost]
+
+        public ViewResult UpdateComment(CommentBox c, string uname, string name)
+        {
+            ViewBag.uname = uname;
+            ViewBag.name = name;
+            foreach (CommentBox cb in pucitRepository.comments)
+            {
+                if (cb.CommentNo == c.CommentNo)
+                {
+                    cb.Comment = c.Comment;
+                    break;
+                }
+            }
+         pucitRepository.UpdateComment(c);
+            ViewModel2 vm2 = new ViewModel2();
+            vm2.Comment = pucitRepository.comments;
+            vm2.commentBox = c;
+            return View("CommentBox", vm2);
         }
         [Authorize]
         public async  Task<ViewResult> Customer(string uname)
@@ -207,9 +288,26 @@ namespace finalYearProject.Controllers
             ViewBag.uname = uname;
             return View();
         }
-        public ViewResult About()
+        public ViewResult About(string uname)
         {
+            ViewBag.uname = uname;
             return View();
+        }
+        [HttpGet]
+        public ViewResult RestaurentContactUs(string uname)
+        {
+            ViewBag.uname = uname;
+            return View("RestaurentContactUs");
+
+        }
+        [HttpPost]
+        public ViewResult RestaurentContactUs(ContactUs u,string uname)
+        {
+            ViewBag.uname = uname;
+            pucitRepository.AddContactUsD(u);
+            ModelState.Clear();
+            return View("RestaurentContactUs");
+
         }
     }
 }

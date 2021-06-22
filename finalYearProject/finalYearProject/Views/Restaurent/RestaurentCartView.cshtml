@@ -1,0 +1,98 @@
+﻿@model finalYearProject.Models.viewmodel;
+
+@{ Layout = "~/Views/Shared/_Layout2.cshtml";
+    var RestaurentID = ViewBag.RestaurentID;
+    var uname = ViewBag.uname;
+}
+@if (Model.Cart.Any())
+{
+    <section class="mainpart">
+        <div class="container">
+            <div class="col-lg-10 m-auto d-block card p-3 decorate">
+
+                <br />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div>
+                    <table class="table table-dark table-hover table-striped ">
+
+
+
+                        <thead>
+                            <tr>
+
+                                <th>
+                                    Name Of Item
+                                </th>
+
+                                <th>
+                                    Price
+                                </th>
+                                <th>
+                                    Quantity
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (finalYearProject.Models.CartAndOrder r in Model.Cart)
+                            {
+
+                                <tr>
+
+                                    <td>
+                                        @r.NameOfItem
+                                    </td>
+                                    <td>
+                                        @r.Price
+
+                                    </td>
+                                    <td>
+                                        @r.Quantity
+
+
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-danger" asp-action="Remove" asp-route-uname="@uname" asp-route-restaurentID="@RestaurentID" asp-route-cartID="@r.CartID">&times;</a>
+                                        <a class="btn btn-success" asp-route-uname="@uname" asp-route-restaurentID="@RestaurentID" asp-route-cartID="@r.CartID" asp-action="Increase">+</a>
+                                        <a class="btn btn-warning" asp-route-uname="@uname" asp-route-restaurentID="@RestaurentID" asp-route-cartID="@r.CartID" asp-action="Decrease">-</a>
+
+                                    </td>
+
+                                </tr>
+                            }
+
+                        </tbody>
+
+
+
+
+
+                    </table>
+
+                    <div>
+                        <a class="btn btn-outline-info" asp-action="Clear" asp-route-restaurentID="@RestaurentID" asp-route-uname="@uname">CLear All</a>
+
+                        <form style="float:right" method="post" asp-action="PlaceOrder" asp-route-uname="@uname" asp-route-RestaurentID="@RestaurentID">
+
+
+                            <label class=" font-weight-bold " asp-for="receipt.UserTime">Time :</label>
+                            <input type="time" class="bg-transparent" asp-for="receipt.UserTime" placeholder="Enter  Restaurant Id ">
+                         
+                            <input class="btn btn-outline-success" type="submit" value="Place Order" /><br>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+else
+{
+    <h3 class="text-center">No Products In the Cart</h3>
+}
+

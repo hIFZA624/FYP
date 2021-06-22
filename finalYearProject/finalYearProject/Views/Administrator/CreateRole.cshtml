@@ -1,6 +1,7 @@
 ﻿@using finalYearProject.Models
 @model Roles
 @{
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutRole.cshtml";
 }
 <div class="container">
@@ -11,7 +12,7 @@
                 <h2 class=" text-center">Create Role</h2>
                 <hr />
                 <div asp-validation-summary="All"></div>
-                <form method="post" action="/Administrator/CreateRole">
+                <form method="post" asp-action="CreateRole" asp-route-uname="@uname">
                     <div class="form-group">
                         <label asp-for="RoleName" class="form-label text-primary">Role Name</label>
                         <input class="form-control text-muted" asp-for="RoleName" placeholder="Enter Role Name">

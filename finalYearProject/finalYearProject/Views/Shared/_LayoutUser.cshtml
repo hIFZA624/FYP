@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@{ 
+  var uname=ViewBag.uname;
+ }
 <html lang="en">
 <head>
     <title>Bootstrap Example</title>
@@ -100,9 +103,10 @@
         </div>
         <div class="sidenav" id="mySidenav">
             <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-            <a asp-action="ListUsers"><i class="fa fa-users" aria-hidden="true"></i> View Users</a>
-            <a asp-action="AddUser"><i class="fa fa-plus" aria-hidden="true"></i> Add User</a>
-            <a asp-controller="Home" asp-action="Admin"><i class="fa fa-sign-out"></i> Exit</a>
+            <a asp-controller="Home" asp-route-uname="@uname" asp-action="Admin"><i class="fa fa-home"></i> Home</a>
+            <a asp-action="ListUsers" asp-route-uname="@uname"><i class="fa fa-users" aria-hidden="true"></i> View Users</a>
+            <a asp-action="AddUser" asp-route-uname="@uname"><i class="fa fa-plus" aria-hidden="true"></i> Add User</a>
+            <a asp-controller="Home" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
         </div>
     </header>
 @RenderBody()

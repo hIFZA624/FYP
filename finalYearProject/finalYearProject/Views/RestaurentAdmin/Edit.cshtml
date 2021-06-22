@@ -1,7 +1,57 @@
-﻿
-@{
-    ViewData["Title"] = "Edit";
-}
+﻿@using finalYearProject.Models;
+@model EditRes
+@{ 
+    var uname = ViewBag.uname;
+    Layout = "~/Views/Shared/_Layout1.cshtml"; }
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <h1 class=" text-center">Edit a Restaurant</h1>
+            <br />
+            <form enctype="multipart/form-data" method="post" asp-action="Edit" asp-route-uname="@uname">
+                <div class="text-danger" asp-validation-summary="All"></div>
+               
+                    <input type="hidden" class="form-control" asp-for="RestaurentID" placeholder="Enter  Restaurant Id "><br>
+                  
+               
+                <div>
+                    <label class="text-warning font-weight-bold" asp-for="NameOfRestaurants">Name of Restaurant</label><br>
+                    <input class="form-control" asp-for="NameOfRestaurants" placeholder="Enter Name Of Restaurant "><br>
+                    <span asp-validation-for="NameOfRestaurants"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold" asp-for="Location">Location</label><br>
+                    <input class="form-control" asp-for="Location" placeholder="Enter Address"><br>
+                    <span asp-validation-for="Location"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="PhoneNo">Phone No</label><br>
+                    <input class="form-control" asp-for="PhoneNo" placeholder="Enter contact details"><br>
+                    <span asp-validation-for="PhoneNo"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="OpenUntil">Open Untill</label><br>
+                    <input class="form-control" asp-for="OpenUntil" placeholder="Enter timings"><br>
+                    <span asp-validation-for="OpenUntil"></span>
+                </div>
+                <div>
+                    <label class="text-warning font-weight-bold " asp-for="DeliveryCharges "></label><br>
+                    <input class="form-control" asp-for="DeliveryCharges " placeholder="Enter Delivery Charges "><br>
 
-<h1>Edit</h1>
+                    <span asp-validation-for="DeliveryCharges "></span>
+                </div>
+                <div class="custom-file">
+                    <div>
+                        <input class="form-control" asp-for="Photo"><br>
+                        <span asp-validation-for="Photo"></span>
+                    </div>
+                </div>
+                <br />
+                <input class="bg-success" type="submit" value="Edit Restaurent" />
+            </form>
+        </div>
+    </div>
+</section>
+
 

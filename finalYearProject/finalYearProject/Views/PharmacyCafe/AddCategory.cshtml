@@ -1,6 +1,7 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITCafeCategoryViewModel
 @{
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
 }
 <section class="mainpart">
@@ -9,7 +10,8 @@
             <br />
             <h1 class=" text-center">Add a Product Category</h1>
             <br />
-            <form enctype="multipart/form-data" method="post" action="/PharmacyCafe/AddCategory" class="form-container">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form enctype="multipart/form-data" method="post" asp-action="AddCategory" asp-route-uname="@uname" class="form-container">
                 <div class="form-group">
                     <label asp-for="addCategory.CategoryName"><b>Enter Category Name</b></label>
                     <input placeholder="Enter Category Name" asp-for="addCategory.CategoryName" name="CategoryName" class="form-control">

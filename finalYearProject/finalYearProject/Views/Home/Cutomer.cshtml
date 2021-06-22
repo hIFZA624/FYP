@@ -87,7 +87,16 @@
             .rotate:hover .cafe-card {
                 transform: rotateY(180deg);
             }
-
+                .h3{
+            color:white;
+        }
+        .p {
+            color:white;
+            text-align:center;
+            line-height:75px;
+            font-size:large;
+            background-color:black;
+        }
             .rotate:hover .back {
                 opacity: 1;
                 top: 0;
@@ -151,43 +160,45 @@
     <body>
         <header>
             <!-- sTART OF hOME PAGE-->
-           
-                    <nav class="navbar navbar-light bg-dark">
-                        <div class="container-fluid" style="padding:10px;">
-                            <a style="padding-left:5px;" class="nav-link disabled" href="#" aria-disabled="true">Cafeteria And Restaurant Management System</a>
-                            <form class="d-flex">
-                                <ul class=" nav justify-content-end">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="Customer">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page">About</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Offer Places</a>
-                                        <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
-                                            <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="Cafe" asp-action="HomePage">Cafeteria</a></li>
-                                            <li><a class="dropdown-item" href="#">Restaurant</a></li>
 
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
-                                        <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
-                                            <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a></li>
-                                            <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="userProfile">Profile</a></li>
-                                            <li><a class="dropdown-item"asp-controller="RestaurentOwner" asp-action="OwnerLogin">Restaurant Owner?</a></li>
-                                        </ul>
-                                    </li>
-
-                                    <li class="nav-item">
-                                        <a class="nav-link active" aria-current="page" asp-action="Logout">Logout</a>
-                                    </li>
+            <nav class="navbar navbar-light bg-dark">
+                <div class="container-fluid" style="padding:10px;">
+                    <a style="padding-left:5px;" class="nav-link disabled" href="#" aria-disabled="true">Cafeteria And Restaurant Management System</a>
+                    <form class="d-flex">
+                        <ul class=" nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="Customer">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="About">About</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Offer Places</a>
+                                <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="Cafe" asp-action="HomePage">Cafeteria</a></li>
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-controller="Restaurent" asp-action="RestaurentHomePage">Restaurant</a></li>
 
                                 </ul>
-                            </form>
-                        </div>
-                    </nav>           
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Others</a>
+                                <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a></li>
+                                    <li><a class="dropdown-item" asp-route-uname="@uname" asp-action="userProfile">Profile</a></li>
+                                    <li><a class="dropdown-item" asp-controller="RestaurentOwner" asp-action="OwnerLogin" asp-route-uname="@uname">Restaurant Owner?</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="CommentBox" asp-route-uname="@uname">Comment</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Home" asp-action="RestaurentContactUs" asp-route-uname="@uname">Contact Us</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-action="Logout">Logout</a>
+                            </li>
+
+                        </ul>
+                    </form>
+                </div>
+            </nav>
             <!--Start of caurasel-->
             <div id="demo" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -233,7 +244,7 @@
         </header>
         <!--End of Home PAGE-->
         <!-- Start of About Section
-        -->
+    -->
         <section>
             <div class="container-fluid">
                 <h1 class="text-center text-capitalize pt-5">Offer Places</h1>
@@ -247,20 +258,21 @@
                         <h1 class="text-capitalize">What we provide you?</h1>
                         <hr>
                         <p>
-                            A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs. ... Paragraphs can contain many different kinds of information
-                            A paragraph is a series of sentences.A paragraph is a series of sentences that are organized and coherent, and are all related to a single topic. Almost every piece of writing you do that is longer than a few sentences should be organized into paragraphs. ...
+                            We are providing you with Cafeteria and Restaurant Management System. As University Students get
+                            less time for break especially PUCIT Students so this app will give you benefit that before your break
+                            you can order from any 
                         </p>
-                        <button class="btn bg-primary text-white">Learn More</button>
+                        <a class="btn bg-primary text-white" asp-route-uname="@uname" asp-action="About">Learn More</a>
                     </div>
                 </div>
             </div>
         </section>
         <!--End of About Section
-        -->
+    -->
         <!--   Start of tab section
-        -->
+    -->
         <!--End of tab section
-        -->
+    -->
         <!--Strat of cafe section-->
         <!-- End of cafe section-->
         <!--Start of Gallery Section-->
@@ -291,17 +303,58 @@
             </div>
         </section>
         <!--start of contact section-->
-        <section class="bg-dark">
-            <article class="py-5 text-center">
-                <div>
-                    <h3 class="display-4 text-white">+92 123456789</h3>
-                    <p class="text-white">You want best service Call us now</p>
-                    <button class="btn btn-warning">Contact Now</button>
+        <footer>
+        <div style="background-color:#111111;padding:30px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                        <h3 class="h3">Offers</h3>
+                    </div>
+
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                        <h3 class="h3">Manage</h3>
+                    </div>
+
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                        <h3 class="h3">Restaurant Owner</h3>
+                    </div>
                 </div>
-            </article>
-        </section>
+                <div class="row">
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                        <a asp-controller="Cafe" asp-action="HomePage" asp-route-uname="@uname">Cafe</a>
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                        <a asp-route-uname="@uname" asp-action="changepasswd">Change Password</a>
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                        <a asp-controller="RestaurentOwner" asp-action="OwnerLogin" asp-route-uname="@uname">Login</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                        <a asp-route-uname="@uname" asp-controller="Restaurent" asp-action="RestaurentHomePage">Restaurant</a>
+                    </div>
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                        <a asp-route-uname="@uname" asp-action="userProfile">Profile</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                        <a href="#"></a>
+                    </div>
+
+                    <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                        <a asp-route-uname="@uname" asp-action="RestaurentContactUs">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="p"> All Rights Reserved by Food Authority Pakistan2021 </p>
+
+        </footer>
+
         <!--End of Contact Section
-        -->
+    -->
         <!--End of Gallery Section   -->
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

@@ -1,40 +1,50 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITShowViewModel
 @{
-    var cafe=ViewBag.cafe;
+    var uname = ViewBag.uname;
+    var cafe = ViewBag.cafe;
     Layout = "~/Views/Shared/_LayoutCafe.cshtml";
 }
-<section class="mainpart">
-    <div class="container">
-        <div class="col-lg-10 m-auto d-block card p-3 decorate">
-            <br />
-            <h1 class=" text-center">PUCIT Cafe Products</h1>
-            <hr />
-            <table class="table  table-hover table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col"><b>Product Name</b></th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
-                    {
+@if (Model.productlist.Any())
+{
+    <section class="mainpart">
+        <div class="container">
+            <div class="col-lg-10 m-auto d-block card p-3 decorate">
+                <br />
+                <h1 class=" text-center">PUCIT Cafe Products</h1>
+                <hr />
+                <table class="table  table-hover table-dark table-striped">
+                    <thead>
                         <tr>
-                            <td>@p.Name</td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@p.Id" class="btn btn-info">View</a>
-                                <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning">Edit</a>
-                                <a asp-action="Remove" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th scope="col"><b>Product Name</b></th>
+                            <th scope="col">Action</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
+                        {
+                            <tr>
+                                <td>@p.Name</td>
+                                <td>
+                                    <a asp-action="DetailProduct" asp-route-uname="@uname" asp-route-id="@p.Id" class="btn btn-info">View</a>
+                                    <a asp-action="EditProduct" asp-route-uname="@uname" asp-route-category="@p.Category" asp-route-id="@p.Id" class="btn btn-warning">Edit</a>
+                                    <a asp-action="Remove" asp-route-uname="@uname" asp-route-category="@p.Category" asp-route-id="@p.Id" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <div>
+        <div class="mt-4">
+            <h2 class="text-center">No products </h2>
         </div>
     </div>
-</section>
-
-
+}
 

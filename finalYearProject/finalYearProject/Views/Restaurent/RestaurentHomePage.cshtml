@@ -1,0 +1,249 @@
+﻿@model List<finalYearProject.Models.Restaurent>
+@{ 
+    var RestaurentID=ViewBag.RestaurentID;
+    var uname = ViewBag.uname;
+    var clear = ViewBag.clear;
+}
+<!DOCKTYPE html>
+    <html>
+    <head>
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <meta charset="utf-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 89%;
+            }
+
+            .footer {
+                padding: 50px;
+                text-align: center;
+                color: white;
+                background: black;
+            }.menu .card-img-top {
+                    transition: all 0.3s ease-in-out;
+                }
+                .h3{
+            color:white;
+        }
+        .p {
+            color:white;
+            text-align:center;
+            line-height:75px;
+            font-size:large;
+            background-color:black;
+        }
+            .background {
+                background-image: url('/images/owner2.jpg');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 100vh;
+                width: 100%;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                font-family: 'Josefin Sans',sans-serif;
+            }
+            .menu {
+            }
+               .menu .card {
+                    border: 0;
+                    margin-bottom: 40px;
+                    position: relative;
+                    background: transparent;
+                }
+              
+                .menu .card-body {
+                    z-index: 10;
+                    background: #ff9b04a6;
+                    backgorund-top: 4px solid #ff9b04a6;
+                    padding: 3px;
+                    box-shado: 0px 2px 15px rgba(241,159,5,0.5);
+                    margin-top: -60px;
+                    transition: 0.3s;
+                }
+                .menu .card-title {
+                    font-weight: bold;
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+                    .menu .card-title a {
+                        color: #000;
+                        transition: 0.3s;
+                    }
+
+                .menu .card-text {
+                    padding: 10px;
+                }
+        </style>
+    </head>
+    <body>
+        <header>
+            <!-- sTART OF hOME PAGE-->
+            <!-- sTART OF hOME PAGE-->
+            <nav class="navbar navbar-light bg-dark m-0">
+                <div class="container-fluid" style="padding:10px;">
+                    <a class="nav-link disabled" href="#" aria-disabled="true">Restaurant System</a>
+                    <form class="d-flex">
+                        <ul class=" nav justify-content-end">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-route-uname="@uname" asp-action="RestaurentHomePage">Home</a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Restaurant List</a>
+                                <ul class="dropdown-menu" style="background-color:white; text-emphasis-color:white">
+                                    @foreach (finalYearProject.Models.Restaurent p in Model)
+                                    {
+                                        <li><a asp-route-restaurentID="@p.RestaurentID" asp-route-uname="@uname" asp-action="RestaurentMenue" class="dropdown-item">@p.NameOfRestaurants</a></li>
+
+                                    }
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </nav>
+            <div class="background">
+                <div>
+                    <h1 class="text-white text-center" style="padding-top:100px;">Welcome to Restaurant Management System</h1>
+                    <h3 class="text-white text-center">We are providing this for Years.</h3>
+                </div>
+            </div>
+        </header>
+        <section id="menu" class="menu ">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="text-center font-weight-bold pt-5 text-capitalize">Available Restaurants</h2>
+                    <hr class="2-25 mx-auto " />
+                    <p>
+                        In Restaurant Management System , There are list of avialable Restaurants you can order from any restaurant
+                        .Than you will get Provide pickup time in which you want the food.
+                    </p>
+                </div>
+                <!--START OF CARD DECTIOM-->
+                <div class="row ">
+                    @foreach (finalYearProject.Models.Restaurent p in Model)
+                    {
+                        <!--START OF CARD -->
+                        <div class="col-md-6 d-flex align-items-stretch">
+                            <div class="card ">
+                                <!-- card -image-->
+                                <img src="~/images/@p.PhotoPATH" style="height:400px;object-fit:cover;" class="card-img-top" alt="...">
+                                <!--card -body-->
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a asp-action="RestaurentHomePage" asp-route-uname="@uname" asp-route-restaurentID="@p.RestaurentID">@p.NameOfRestaurants</a>
+                                    </h5>
+                                    <p class="card-text">
+                                        Location: @p.Location
+                                        <br />
+                                        Phone No: @p.PhoneNo
+                                        <br />
+                                        Open Untill: @p.OpenUntil
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!--End of Home PAGE-->
+        <!-- Start of Menu Section-->
+        <div style="margin-bottom:20px;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d13597.459350046463!2d74.30212987654872!3d31.569041664019228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sRestaurants%20%20near%20Punjab%20Universty%20old%20campus!5e0!3m2!1sen!2s!4v1617106747166!5m2!1sen!2s" width="1000" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+
+        <footer>
+            <div style="background-color:#111111;padding:30px">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <h3 class="h3">Offers</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <h3 class="h3">Manage</h3>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                            <h3 class="h3">Restaurant Owner</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a asp-controller="Cafe" asp-action="HomePage" asp-route-uname="@uname">Cafe</a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-controller="Home" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-three">
+                            <a asp-controller="RestaurentOwner" asp-action="OwnerLogin" asp-route-uname="@uname">Login</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a asp-route-uname="@uname"></a>
+                        </div>
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-controller="Home" asp-route-uname="@uname" asp-action="userProfile">Profile</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                            <a href="#"></a>
+                        </div>
+
+                        <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                            <a asp-route-uname="@uname" asp-controller="Home" asp-action="RestaurentContactUs">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="p"> All Rights Reserved by Food Authority Pakistan2021 </p>
+
+        </footer>
+
+        <!-- Start of Menu Section-->
+        <script>
+            if ("@clear" == "clearcart") {
+                let items = [];
+                localStorage.setItem("productsInCart", JSON.stringify(items));
+                let productNumbers = localStorage.getItem("cartNumbers");
+                productNumbers = 0;
+                localStorage.setItem("cartNumbers", productNumbers);
+
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
+
+

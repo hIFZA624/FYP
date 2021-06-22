@@ -1,8 +1,9 @@
 ﻿@using finalYearProject.Models;
 @model RestaurentMenu
 @{
-   
+
     Layout = "~/Views/Shared/_Layout3.cshtml";
+    var uname = ViewBag.uname;
 }
 <section class="mainpart">
     <div class="container">
@@ -10,7 +11,7 @@
             <br />
             <h1 class=" text-center">Add a Menu Item</h1>
             <br />
-            <form enctype="multipart/form-data" method="post" asp-action="AddMenu" asp-route-RestaurentID="@Model.RestaurentID">
+            <form enctype="multipart/form-data" method="post" asp-action="AddMenu" asp-route-uname="@uname" asp-route-RestaurentID="@Model.RestaurentID">
                 <div asp-validation-summary="ModelOnly"></div>
 
                 <div>
@@ -38,10 +39,10 @@
                     <label asp-for="unit" class="text-warning font-weight-bold ">Select Unit</label>
                     <select asp-for="unit" class="text-muted custom-select" required>
                         <option value="kilogram">Select Unit</option>
-                        <option value="kilogram">Kilogram</option>
-                        <option value="piece">piece</option>
-                        <option value="box">Box</option>
-                        <option value="liter">liter</option>
+                        <option value="Kilogram">Kilogram</option>
+                        <option value="Piece">piece</option>
+                        <option value="Box">Box</option>
+                        <option value="Liter">liter</option>
 
                     </select>
                 </div>

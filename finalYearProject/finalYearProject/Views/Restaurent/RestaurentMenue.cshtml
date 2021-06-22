@@ -1,0 +1,50 @@
+﻿@model List<finalYearProject.Models.RestaurentMenu>
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var uname= ViewBag.uname;
+   var RestaurentID=ViewBag.RestaurentID;
+}
+<style>
+    body {
+        background-image: url('https://images.pexels.com/photos/3262277/pexels-photo-3262277.jpeg?cs=srgb&dl=pexels-hu%E1%BB%B3nh-%C4%91%E1%BA%A1t-3262277.jpg&fm=jpg');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;   
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .height{
+      height:200px;
+    }
+</style>
+<section id="menu" class="menu ">
+    <div >
+        @foreach (finalYearProject.Models.RestaurentMenu rm in Model)
+        {
+                <div >
+                    <div class="col-md-4 d-flex align-items-stretch rotate">
+                        <div class="card text-center mb-3 cafe-card">
+                            <div class="card-header p-3">
+                                <h4 class=" tefont-weight-light title-text" style="padding:3px;">@rm.NameOfItem</h4>
+                            </div>
+                            <div class="card-body">
+                                <img  class="img-fluid rounded height" src="~/images/@rm.PhotoPATH2">
+                            </div>
+                            
+                            <div class="back">
+                                <div class="back-content">
+                                    <h2 class="text-uppercase font-weight-light">Try Item</h2>
+                                    <h5 class="mb-3">Have Fun</h5>
+                                    <a asp-action="MenueDetail" asp-route-uname="@uname" asp-route-restaurentID="@rm.RestaurentID" asp-route-menuID="@rm.MenuID" class="btn btn-warning " class="btn btn-warning hwr-right my-4 text-capitalize">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>     
+        }
+    </div>
+</section>
+
+
+

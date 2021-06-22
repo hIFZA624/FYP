@@ -1,0 +1,89 @@
+﻿@model finalYearProject.Models.RestaurentMenu;
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+   var RestaurentID=ViewBag.RestaurentID;
+          
+    var uname=ViewBag.uname;
+}
+<style>
+
+    body {
+        background-image: url('');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    .center{
+        text-align:center;
+    }
+</style>
+<div id="ex1" class="modal">
+    <p>Thanks for clicking. That felt good.</p>
+    <form enctype="multipart/form-data" class="center position-absolute  p-2 text-dark shadow form-area " method="post" asp-action="AddToCart" asp-route-uname="@uname" asp-route-RestaurentID="@RestaurentID">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div hidden>
+            <label class="text-warning font-weight-bold font-italic" asp-for="RestaurentID"></label><br>
+            <input class="bg-transparent" asp-for="RestaurentID" readonly><br>
+            <span asp-validation-for="RestaurentID"> </span>
+        </div>
+        <div hidden>
+            <label class="text-warning  font-weight-bold font-italic" asp-for="MenuID"></label><br>
+            <input class="bg-transparent" asp-for="MenuID" readonly><br>
+            <span asp-validation-for="MenuID"> </span>
+        </div>
+        <div hidden>
+            <label class="text-warning  font-weight-bold font-italic" asp-for="@uname">User ID</label><br>
+            <input class="bg-transparent" asp-for="@uname" readonly><br>
+
+        </div>
+        <input type="hidden" asp-for="NameOfItem" />
+        <input type="hidden" asp-for="Price" />
+        <input type="hidden" asp-for="Quantity" />
+        <input type="hidden" asp-for="unit" />
+        <input type="hidden" asp-for="PhotoPATH2" />
+        <div>
+            <label class="text-warning font-weight-bold font-italic" asp-for="SelectedQuantity"></label><br>
+            <input class="bg-transparent" asp-for="SelectedQuantity" placeholder="Enter Required Quintity "><br>
+            <span asp-validation-for="SelectedQuantity"></span>
+        </div>
+        <input class="bg-success text-center" type="submit" value="Add To Cart" /><br>
+        <br />
+    </form>
+    <div>
+        <a href="#" rel="modal:close"></a>
+    </div>
+</div>
+   
+
+<section>
+    <div class="container-fluid">
+        <h1 class="text-center text-capitalize pt-3">Item Details</h1>
+        <hr class="2-25 mx-auto">
+        <div class="row mb-5" style="margin-top:20px;">
+            <div class="col-lg-6 col-md-6 col-12">
+                <img src="~/images/@Model.PhotoPATH2" alt="Denim Jeans" style="width:100%;height:300px;object-fit:cover;">
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-12">
+                <h3>Item Name: @Model.NameOfItem</h3>
+                <p>Price: @Model.Price</p>
+                <p>Qantity: @Model.Quantity @Model.unit</p>
+              
+                <div style="display:none">
+                    <label class="text-warning font-weight-bold font-italic" asp-for="RestaurentID"></label><br>
+                    <input class="bg-transparent" asp-for="RestaurentID" readonly><br>
+                    <span asp-validation-for="RestaurentID"></span>
+                </div>
+                <div style="display:none">
+                    <label class="text-warning font-weight-bold font-italic" asp-for="MenuID"></label><br>
+                    <input class="bg-transparent" asp-for="MenuID" readonly><br>
+                    <span asp-validation-for="MenuID"> </span>
+                </div>
+                <p><a href="#ex1" style="color:black" class="btn btn-outline-success" rel="modal:open">Add To Cart </a></p>
+            </div>
+        </div>
+    </div>
+</section>

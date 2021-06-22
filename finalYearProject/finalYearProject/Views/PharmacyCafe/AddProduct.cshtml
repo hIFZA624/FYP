@@ -1,6 +1,7 @@
 ﻿@using finalYearProject.ViewModel
 @model PUCITCafeViewModel
 @{
+    var uname = ViewBag.uname;
     Layout = "~/Views/Shared/_LayoutCafePharmacy.cshtml";
 }
 <section class="mainpart">
@@ -10,7 +11,8 @@
             <br />
             <h1 class=" text-center text-warning">Add a Product</h1>
             <hr />
-            <form enctype="multipart/form-data" method="post" action="/PharmacyCafe/AddProduct" class="form-container">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form enctype="multipart/form-data" method="post" asp-action="AddProduct" asp-route-uname="@uname" class="form-container">
                 <div class="form-group">
                     <label class="form-label text-primary">Select Product Category</label>
 

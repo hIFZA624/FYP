@@ -1,6 +1,10 @@
-﻿<html>
+﻿@{ 
+  var uname= ViewBag.uname;
+}
+<html>
 
 <head>
+    <link href="~/css/site.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Baloo 2' rel='stylesheet'>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -118,19 +122,19 @@
     </header>
     <div class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-
+        <a asp-controller="Home"  asp-action="Admin" asp-route-uname="@uname"><i class="fa fa-home"></i> Home</a>
         <button class="dropdown-btn">
             <i class="fa fa-list-alt" aria-hidden="true"></i>
             Menu Category  <i class="fa fa-caret-down"></i>
 
         </button>
         <div class="dropdown-container">
-            <a asp-action="CategoryView"> View Categories</a>
-            <a asp-action="AddCategory"> Add Category</a>
+            <a asp-action="CategoryView" asp-route-uname="@uname"> View Categories</a>
+            <a asp-action="AddCategory" asp-route-uname="@uname"> Add Category</a>
         </div>
 
-        <a asp-action="AddProduct"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
-        <a asp-action="OrderedList"><i class="fa fa-list"></i> Ordered List</a>
+        <a asp-action="AddProduct" asp-route-uname="@uname"><i class="fa fa-plus" aria-hidden="true"></i> Add Product</a>
+        <a asp-action="OrderedList" asp-route-uname="@uname"><i class="fa fa-list"></i> Ordered List</a>
         <button class="dropdown-btn">
             <i class="fa fa-product-hunt" aria-hidden="true"></i>
             View Products  <i class="fa fa-caret-down"></i>
@@ -139,12 +143,12 @@
         <div class="dropdown-container">
             @foreach (finalYearProject.Models.PUCITCafeCategory category in Model.Category)
             {
-                <a asp-action="ProductView" asp-route-categoryName="@category.CategoryName">@category.CategoryName</a>
+                <a asp-action="ProductView" asp-route-uname="@uname" asp-route-categoryName="@category.CategoryName">@category.CategoryName</a>
 
             }
         </div>
 
-        <a asp-action="Admin" asp-controller="Home"><i class="fa fa-sign-out"></i> Exit</a>
+        <a asp-action="Logout" asp-controller="Home" ><i class="fa fa-sign-out"></i> Logout</a>
     </div>
     <!--
 

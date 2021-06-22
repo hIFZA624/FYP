@@ -1,0 +1,48 @@
+﻿@model finalYearProject.ViewModel.ViewModel2;
+@{
+    var name = ViewBag.name;
+    var uname = ViewBag.uname;
+    Layout = "~/Views/Shared/_LayoutCustomerApp.cshtml";
+}
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <div>
+                <form method="post" class="text-center" asp-action="CreateComment" asp-route-name="@name" asp-route-uname="@uname">
+                    <div asp-validation-summary="ModelOnly"></div>
+
+                    <div>
+                        <label style="float:left" asp-for="commentBox">Add Comment</label>
+                          <textarea  class="form-control" placeholder="Add Comment" asp-for="commentBox.Comment"></textarea>
+
+                    </div>
+                    <input class="bg-success mt-2" style="float:left" type="submit" value="Submit" /><br>
+                    <br />
+                </form>
+                <div >
+                    @foreach (finalYearProject.Models.CommentBox c in Model.Comment)
+                    {
+                        <h3 style="font-size:20px;"> @c.Name</h3>
+                        <p class=" ">
+                            @c.date
+                        </p>
+                        <p>
+                            @c.Comment
+
+                        </p>
+                        @if (uname == c.UserID)
+                        {
+                            <a class="btn btn-info" asp-action="DeleteComment" asp-route-uname="@uname" asp-route-name="@name" asp-route-commentNo="@c.CommentNo">Remove</a>
+                            <a class="btn btn-success" asp-route-uname="@uname" asp-route-name="@name" asp-action="UpdateComment" asp-route-commentNo="@c.CommentNo">Update</a>
+                        }
+                      <hr />
+                    }
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

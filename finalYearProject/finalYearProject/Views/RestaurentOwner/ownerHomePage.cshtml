@@ -2,11 +2,24 @@
 @model Restaurent
 @{
     Layout = "~/Views/Shared/_Layout3.cshtml";
-    
+    var uname = ViewBag.uname;
     var resid = ViewBag.resId;
 }
-<style>
+    <style>
+      
 
+        .h3 {
+            color: white;
+        }
+
+        .p {
+            color: white;
+            text-align: center;
+            line-height: 75px;
+            font-size: large;
+            background-color: black;
+        }
+  
     body {
         background-image: url('');
         background-repeat: no-repeat;
@@ -28,15 +41,49 @@
             </div>
             <div class="col-lg-6 col-md-6 col-12">
                 <h3>Location : @Model.Location</h3>
-               
+
                 <p>Phone No: @Model.PhoneNo</p>
                 <p>Open Untill: @Model.OpenUntil</p>
                 <p>Delivery Charges: @Model.DeliveryCharges</p>
-               
+
             </div>
         </div>
     </div>
 </section>
+<footer>
+    <div style="background-color:#111111;padding:20px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                    <h3 class="h3">Manage</h3>
+                </div>
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-two">
+                    <h3 class="h3">Visit</h3>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                    <a asp-controller="Home" asp-route-uname="@uname" asp-action="userProfile">Profile</a>
+                </div>
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                    <a asp-controller="Cafe" asp-action="HomePage" asp-route-uname="@uname">Cafe</a>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                    <a asp-controller="Home" asp-route-uname="@uname" asp-action="changepasswd">Change Password</a>
+                </div>
+                <div class="col-md-4 col-sm-3 col-xl-4 segment-one">
+                    <a  asp-route-uname="@uname" asp-controller="Restaurent" asp-action="RestaurentHomePage">Restaurant</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    
+</footer>
 
 
 

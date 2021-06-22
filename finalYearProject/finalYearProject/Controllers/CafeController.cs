@@ -21,15 +21,22 @@ namespace finalYearProject.Controllers
             
         }
         PUCITRepository pucitRepository = new PUCITRepository();
-        public ActionResult HomePage(string uname,string cafe)
+        public async Task<ActionResult> HomePage(string uname,string cafe,string clear)
         {
+            if(clear=="clearcart")
+            {
+                pucitRepository.Cart.Clear();
+                pucitRepository.ClearAllCart();
+            }
+                var user = await userManager.FindByIdAsync(uname);
             ViewBag.cafe = cafe;
             ViewBag.uname = uname;
+            ViewBag.email = user.Email;
             return View();
         }
-        public async Task<ViewResult> PucitCafe(string uname,string cafe)
+        public async Task<ViewResult> PucitCafe(string uname,string cafe,string clear)
         {
-
+            ViewBag.clear = clear;
             var user = await userManager.FindByIdAsync(uname);
             ViewBag.uname = user.Id;
             ViewBag.cafe = cafe;
@@ -38,13 +45,13 @@ namespace finalYearProject.Controllers
             pUCITCategoryViewcs.Category = pucitRepository.Category;
             return View("PucitCafe",pUCITCategoryViewcs);
         }
-        public async Task<ViewResult> PharmacyCafe(string uname,string cafe)
+        public async Task<ViewResult> PharmacyCafe(string uname,string cafe,string clear)
         {
-
+            ViewBag.clear = clear;
             var user = await userManager.FindByIdAsync(uname);
             ViewBag.uname = user.Id;
             ViewBag.cafe = cafe;
-
+            ViewBag.email = user.Email;
             return View(pucitRepository.CategoryPharmacy);
         }
         public async Task<ViewResult> ProductsView(string CategoryName,string uname,string cafe,string email)
@@ -68,12 +75,12 @@ namespace finalYearProject.Controllers
             pUCITShowViewModel.Category = pucitRepository.Category;
             return View(pUCITShowViewModel);
         }
-        public async Task<ViewResult> ProductViewPharmacy(string CategoryName, string uname, string cafe)
+        public async Task<ViewResult> ProductViewPharmacy(string CategoryName, string uname, string cafe,string email)
         {
             ViewBag.Categoryname = CategoryName;
             var user = await userManager.FindByIdAsync(uname);
             ViewBag.uname = user.Id;
-
+            ViewBag.email = user.Email;
             ViewBag.cafe = cafe;
 
             PUCITShowViewModel pUCITShowViewModel = new PUCITShowViewModel();

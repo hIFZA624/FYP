@@ -1,127 +1,136 @@
 ﻿@model finalYearProject.ViewModel.PUCITShowViewModel
 @{
-      Layout = "~/Views/Shared/_LayoutPucitCafe.cshtml";
+    Layout = "~/Views/Shared/_LayoutPucitCafe.cshtml";
     var category = ViewBag.Categoryname;
     var uname = ViewBag.uname;
     var cafe = ViewBag.cafe;
-    var email= ViewBag.email;
+    var email = ViewBag.email;
 }
+@if (Model.productlist.Any())
+{
     <div class="increse" style="margin-left:5px;margin-top:5px;">
         <h1 id="myBtn"><i class="fa fa-shopping-cart"></i><span>0</span></h1>
     </div>
-    <!--End of Home PAGE-->
-    <!-- Start of Menu Section-->
-    <section id="menu" class="menu ">
-        <div class="container">
-            <!--<div class="section-title">
-                <h2 class="text-center font-weight-bold pt-5 text-capitalize">Menu Categories</h2>
-                <hr class="2-25 mx-auto pt-3">
-                <p>
-                    A distinct section of a piece of writing, usually dealing
-                    with a single theme and indicated by a new line, indentation, or
-                    numbering.a distinct section of a piece of writing, usually dealing
-                    with a single theme and indicated by a new line, indentation, or
-                    numbering.
-                </p>
-            </div>-->
-            <!--START OF CARD DECTIOM-->
-            <div class="row mt-3 ">
-                @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
-                {
-                    <!--START OF CARD -->
-                    <div class="col-md-4 d-flex align-items-stretch">
-                        <!-- <div class="card">
+<!--End of Home PAGE-->
+<!-- Start of Menu Section-->
+<section id="menu" class="menu ">
+    <div class="container">
+        <!--<div class="section-title">
+            <h2 class="text-center font-weight-bold pt-5 text-capitalize">Menu Categories</h2>
+            <hr class="2-25 mx-auto pt-3">
+            <p>
+                A distinct section of a piece of writing, usually dealing
+                with a single theme and indicated by a new line, indentation, or
+                numbering.a distinct section of a piece of writing, usually dealing
+                with a single theme and indicated by a new line, indentation, or
+                numbering.
+            </p>
+        </div>-->
+        <!--START OF CARD DECTIOM-->
+        <div class="row mt-3 ">
+            @foreach (finalYearProject.Models.PUCITProducts p in Model.productlist)
+            {
+                <!--START OF CARD -->
+                <div class="col-md-4 d-flex align-items-stretch">
+                    <!-- <div class="card">
 
-                            <img src="~/images/@p.PhotoPath" class="card-img-top height" alt="...">
+                        <img src="~/images/@p.PhotoPath" class="card-img-top height" alt="...">
 
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <a asp-action="ProductDetail" asp-route-id="@p.Id">@p.Name</a>
-                                </h5>
-                                <p class="card-text text-center">
-                                    Price: $ @p.Price
-                                </p>
-                            </div>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a asp-action="ProductDetail" asp-route-id="@p.Id">@p.Name</a>
+                            </h5>
+                            <p class="card-text text-center">
+                                Price: $ @p.Price
+                            </p>
                         </div>
-                        -->
-                        <div class="card">
-                            <h1 style="display:none" class="overflow-hidden">@p.Id</h1>
-                            <img src="~/images/@p.PhotoPath" class="height" alt="Denim Jeans" style="width:100%">
-                            <h1>@p.Name</h1>
-                            <p class="price">Rs.@p.Price</p>
-                            <p style="display:none" class="price">@category</p>
-                            <a class="add-cart" href="#">Add to Cart</a>
-                        </div>
-
                     </div>
-                }
-            </div>
+                    -->
+                    <div class="card">
+                        <h1 style="display:none" class="overflow-hidden">@p.Id</h1>
+                        <img src="~/images/@p.PhotoPath" class="height" alt="Denim Jeans" style="width:100%">
+                        <h1>@p.Name</h1>
+                        <p class="price">Rs.@p.Price</p>
+                        <p style="display:none" class="price">@category</p>
+                        <a class="add-cart" href="#">Add to Cart</a>
+                    </div>
 
-
+                </div>
+            }
         </div>
 
-    </section><!--Cart Viiew-->
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h1 class="text-center text-capitalize mb-5">Product Cart</h1>
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <div class="table-responsive">
+    </div>
+
+</section>
+}
+else
+{
+    <h5 class="text-center mt-4">No products Are in This category</h5>
+}
+
+<!--Cart Viiew-->
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1 class="text-center text-capitalize mb-5">Product Cart</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-11">
+                <div class="table-responsive">
 
 
-                        <table id="mytable" class="table">
-                            <!--  <thead>
-            <tr>
-              <th>Product</th>
-              <th>Name</th>
-              <th>Qty</th>
-              <th>Price</th>
+                    <table id="mytable" class="table">
+                        <!--  <thead>
+                            <tr>
+                              <th>Product</th>
+                              <th>Name</th>
+                              <th>Qty</th>
+                              <th>Price</th>
 
-            </tr>
-          </thead>
-        <tbody class="table-body">
-        </tbody>-->
-                        </table>
-                        <div>
-                            <button onclick="finshProduct()" style="float:right;margin-left:3px;" class="end btn btn-outline-success">
-                                Place Order
-                            </button>
-                            <button style="margin-bottom:10px;float:right;margin-left:3px;" class="btn btn-outline-info" onclick="deleteItems()">Clear Cart</button>
-                        </div>
+                            </tr>
+                          </thead>
+                        <tbody class="table-body">
+                        </tbody>-->
+                    </table>
+                    <div>
+                        <button style="margin-bottom:10px;float:right;margin-left:3px;" class="btn btn-outline-info" onclick="deleteItems()">Clear Cart</button>
+                        <button onclick="finshProduct()" style="float:right;margin-left:3px;" class="end btn btn-outline-success">
+                            Place Order
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--Java Script Code-->
-    <script type="text/javascript">
-        
+</div>
+<!--Java Script Code-->
+<script type="text/javascript">
+
         function finshProduct() {
             console.log("Finshded Prodcut");
-          
+
                       console.log("Finshded Prodcut");
             let items = [];
             //product convert
                let cart = localStorage.getItem("productsforadmin");
             let cartItems = localStorage.getItem("productsInCart");
-           
+
             cartItems = JSON.parse(cartItems);
            cart = JSON.parse(cart);
             localStorage.clear();
              var flag = "true";
               if (cart != null) {
-                
+
                   cart.map(data => {
                       if (data.userId == "@uname" && data.cafe=="@cafe") {
                           flag = "false";
                       }
                     items.push(data);
                 })
-                
+
               }
             if (flag == "true") {
                 if (cartItems != null) {
@@ -156,15 +165,17 @@
         //cardboxtable.innerHTML=tableData;
 
         localStorage.setItem("id", 0);
-        function displayCart() {
-            let cartItems = localStorage.getItem("productsInCart");
-            cartItems = JSON.parse(cartItems);
-            let cartBox = document.querySelector(".modal-content");
-            let tablecontent = cartBox.querySelector("table");
-            let tabledata = "";
+    function displayCart() {
+        let cartItems = localStorage.getItem("productsInCart");
+        let cartBox = document.querySelector(".modal-content");
+        let tablecontent = cartBox.querySelector("table");
+        let tabledata = "";
+        cartItems = JSON.parse(cartItems);
+       
             tabledata += `<thead class="make">
+
                                             <tr>
-                                              
+
          <th>Product Category</th>
                                               <th>Product Name</th>
                                               <th>Qty</th>
@@ -179,7 +190,7 @@
 
 <tr>
 
-                                             
+
 
                                                <td>
                                                   <p>${item.Para}</p>
@@ -194,27 +205,29 @@
                                                 <p>${item.inCart}</p>
                                                 </div>
                                               </td>
-
                                               <td>
                                                  <p>${item.Price}</p>
                                               </td >
-
                                                 <td>
                                                 <button class="removeItem btn btn-danger">Remove</button>
                                               </td  >
-
                                             </tr>
-
                                             <tbody>
-
                                            `;
                     tablecontent.innerHTML = tabledata;
-                })
-            }
-        }
+                })         
+        }    
+         
+    }
+        
         function deleteItems() {
-            localStorage.clear();
-            window.location.reload();
+            let items = [];
+            localStorage.setItem("productsInCart", JSON.stringify(items));
+            let productNumbers = localStorage.getItem("cartNumbers");
+            productNumbers=0;
+              localStorage.setItem("cartNumbers", productNumbers);
+                  window.location.reload();
+
         }
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
@@ -322,9 +335,9 @@
                 console.log("hello");
                 let cartItems = localStorage.getItem("productsInCart");
                 cartItems = JSON.parse(cartItems);
-                const number = event.target.parentElement.parentElement.children[3].children[0].textContent;
+                const number = event.target.parentElement.parentElement.children[2].children[0].textContent;
                 cartItems.map(data => {
-                    if (data.Name != event.target.parentElement.parentElement.children[2].children[0].textContent) {
+                    if (data.Name != event.target.parentElement.parentElement.children[1].children[0].textContent) {
                         items.push(data);
                     }
                 })
@@ -339,6 +352,6 @@
                 window.location.reload();
             })
         }
-        
-    </script>
+
+</script>
 

@@ -1,58 +1,66 @@
 ﻿@model List<finalYearProject.Models.RestaurentMenu>
 @{
     Layout = "~/Views/Shared/_Layout3.cshtml";
-
+    var resid = ViewBag.resId;
+    var uname = ViewBag.uname;
     String resname = "";
 }
-<section class="mainpart">
-    <div class="container">
-        <div class="col-lg-11 m-auto d-block card p-3 decorate">
-            <br />
-            @foreach (finalYearProject.Models.RestaurentMenu rm in Model)
-            {
-                resname = rm.RestaurentName;
-            }
-            <h1 class="text-center font-weight-bold">Restaurant Name: @resname</h1>
-            <br />
-            <table class="table  table-hover table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col"><b>Name</b></th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Unit</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (finalYearProject.Models.RestaurentMenu rm in Model)
-                    {
+@if (Model.Any())
+{
+    <section class="mainpart">
+        <div class="container">
+            <div class="col-lg-11 m-auto d-block card p-3 decorate">
+                <br />
+                @foreach (finalYearProject.Models.RestaurentMenu rm in Model)
+                {
+                    resname = rm.RestaurentName;
+                }
+                <h1 class="text-center font-weight-bold">Restaurant Name: @resname</h1>
+                <br />
+                <table class="table  table-hover table-dark table-striped">
+                    <thead>
                         <tr>
-
-                            <td>
-                                @rm.NameOfItem
-                            </td>
-                            <td>
-                                Rs. @rm.Price
-
-                            </td>
-                            <td>
-                                @rm.Quantity
-
-                            </td>
-                            <td>
-                                @rm.unit
-
-                            </td>
-                            <td>
-                                <!--  <a asp-route-restaurentID="@rm.RestaurentID" asp-action="AddMenu" class="btn btn-info">View</a>-->
-                                <a asp-route-restaurentID="@rm.RestaurentID" asp-action="Edit" class="btn btn-warning">Update</a>
-                                <a asp-action="Delete" asp-route-restaurentID="@rm.RestaurentID" class="btn btn-danger">Delete</a>
-                            </td>
+                            <th scope="col"><b>Name</b></th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Actions</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (finalYearProject.Models.RestaurentMenu rm in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @rm.NameOfItem
+                                </td>
+                                <td>
+                                    Rs. @rm.Price
+
+                                </td>
+                                <td>
+                                    @rm.Quantity
+
+                                </td>
+                                <td>
+                                    @rm.unit
+
+                                </td>
+                                <td>
+                                    <!--  <a asp-route-restaurentID="@rm.RestaurentID" asp-action="AddMenu" class="btn btn-info">View</a>-->
+                                    <a asp-route-uname="@uname" asp-route-restaurentID="@rm.RestaurentID" asp-route-RestaurentID="@resid" asp-route-menuid="@rm.MenuID" asp-action="EditItem" class="btn btn-warning">Update</a>
+                                    <a asp-route-uname="@uname" asp-action="DeleteItem" asp-route-RestaurentID="@resid" asp-route-restaurentID="@rm.RestaurentID" asp-route-menuid="@rm.MenuID" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+else
+{
+    <h5 class="text-center mt-4">No Items Present</h5>
+}

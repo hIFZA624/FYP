@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 @{ 
     var resid = ViewBag.resId;
+    var uname = ViewBag.uname;
 }
 <html>
 <head>
@@ -110,6 +111,44 @@
             display: none;
             padding-left: 13px;
         }
+        .dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
     </style>
 </head>
 <body>
@@ -126,10 +165,12 @@
     </header>
     <div class="sidenav" id="mySidenav">
         <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
-        <a asp-action="ownerHomePage" asp-route-RestaurentID="@resid">  <i class="fa fa-list-alt" aria-hidden="true"></i> Home</a>
-        <a asp-action="AddMenu" asp-route-RestaurentID="@resid"><i class="fa fa-plus" aria-hidden="true"></i> Add Menu</a>
-        <a  asp-action="OwnerMenuList" asp-route-RestaurentID="@resid"><i class="fa fa-sign-out"></i> View Menu</a>
-        <a asp-controller="Home" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
+        <a asp-action="ownerHomePage" asp-route-uname="@uname" asp-route-RestaurentID="@resid">  <i class="fa fa-list-alt" aria-hidden="true"></i> Home</a>
+        <a asp-action="AddMenu" asp-route-uname="@uname" asp-route-RestaurentID="@resid"><i class="fa fa-plus" aria-hidden="true"></i> Add Menu</a>
+        <a asp-action="OwnerMenuList" asp-route-uname="@uname" asp-route-RestaurentID="@resid"><i class="fa fa-list"></i> View Menu</a>
+        <a asp-action="PendingOrderList" asp-route-uname="@uname" asp-route-RestaurentID="@resid"><i class="fa fa-spinner fa-pulse"></i> Pending Order List</a>
+        <a asp-action="OrderList" asp-route-uname="@uname" asp-route-RestaurentID="@resid"><i class="fa fa-check-square"fas fa-check-square""></i> Order List</a>
+        <a asp-controller="Home" asp-route-uname="@uname" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
     </div>
     <div>
         @RenderBody()

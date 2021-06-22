@@ -1,0 +1,42 @@
+﻿
+@using finalYearProject.Models
+@model CommentBox
+@{
+    Layout = "~/Views/Shared/_LayoutCustomerApp.cshtml";
+    var name = ViewBag.name;
+    var uname = ViewBag.uname;
+}
+<style>
+    .hei{
+        height:800px;
+    }
+</style>
+<section class="mainpart">
+    <div class="container">
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+           
+            <h2 class="text-success text-center">Update Comment</h2>
+            <form method="post" class="card-body text-center" asp-action="UpdateComment" asp-route-uname="@uname" asp-route-name="@name">
+                <div asp-validation-summary="ModelOnly"></div>
+
+                <div hidden>
+                    <label asp-for="CommentNo"> CommentNo </label>
+                    <textarea class="form-control" asp-for="CommentNo"></textarea>
+
+                </div>
+                <div>
+
+                    <textarea class="form-control hei" asp-for="Comment"></textarea>
+
+                </div>
+
+                <input class="bg-success mt-2" style="float:left" type="submit" value="Update" /><br>
+                <br />
+
+
+
+            </form>
+        </div>
+    </div>
+</section>

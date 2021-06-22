@@ -99,10 +99,7 @@
                 padding-left: 13px;
             }
 
-            /*
-            Top Nav
-        */
-
+          
     </style>
 </head>
 <body>
@@ -130,43 +127,6 @@
             <a asp-action="PUCITCafe">PUCIT Cafe</a>
             <a asp-action="CategoryView">Pharmacy Cafe</a>
         </div>
-
-
-        <!--<button class="dropdown-btn">
-            <i class="material-icons">&#xe56c;</i> PUCIT Cafe
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <button class="dropdown-btn">
-                Product Category
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-container">
-                <a asp-action="AddCategory">Add Category</a>
-                <a asp-action="CategoryView">View Categories</a>
-            </div><button class="dropdown-btn">
-                Products
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-container">
-                <a asp-action="AddProduct">Add Product</a>
-
-
-
-                <button class="dropdown-btn">
-                    View Products
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    @foreach (finalYearProject.Models.PUCITCafeCategory category in Model.Category)
-                    {
-                        <a asp-action="ProductView" asp-route-categoryName="@category.CategoryName">@category.CategoryName</a>
-
-                    }
-                </div>
-            </div>
-        </div>
-
         <a href="#"><i class="material-icons">&#xe561;</i> Pharmacy Cafe</a>-->
         <a href="#"><i class="fa fa-user"></i> Profile</a>
         <a href="#"><i class="fa fa-sign-out"></i> Logout</a>

@@ -1,0 +1,60 @@
+﻿@using finalYearProject.ViewModel
+@model PUCITCafeViewModel
+@{
+    var uname = ViewBag.uname;
+    Layout = "~/Views/Shared/_LayoutCafe.cshtml";
+}
+<section class="mainpart">
+    <div class="container">
+
+        <div class="col-lg-8 m-auto d-block card p-5 decorate">
+            <br />
+            <h1 class=" text-center text-warning">Edit a Product</h1>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <form enctype="multipart/form-data" method="post" asp-action="EditProduct" asp-route-uname="@uname" class="form-container">
+                <div class="form-group">
+                   
+                        <input type="hidden" class="form-control text-muted" asp-for="addProduct.Id" name="Id"  placeholder="Enter Name">
+                    
+                    <label class="form-label text-primary">Select Product Category</label>
+                    <select asp-for="addProduct.Category" name="Category" class="text-muted custom-select" id="cars" required>
+                        @foreach (finalYearProject.Models.PUCITCafeCategory category in Model.Category)
+                        {
+
+                            <option value="@category.CategoryName">@category.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label text-primary" asp-for="addProduct.Name">Name of Product</label>
+                    <input class="form-control text-muted" asp-for="addProduct.Name" name="Name" id="name" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label  text-primary" asp-for="addProduct.Price">Enter Price</label>
+                    <input class="form-control text-muted" asp-for="addProduct.Price" name="Price" id="price" placeholder="Enter Price">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" asp-for="addProduct.Quantity">Quantity</label>
+                    <br />
+                    <input class="form-control text-muted" asp-for="addProduct.Quantity" name="Quantity" id="quantity" placeholder="Enter Quantity">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label  text-primary" for="exampleFormControlFile1">Choose Picture</label>
+                    <br />
+                    <input input asp-for="addProduct.Photo" name="Photo" class="form-control text-muted" id="exampleFormControlFile1">
+                </div>
+
+                <!--slect part-->
+
+                <input type="submit" class="btn btn-primary button-font" value="Update Product" />
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+
+

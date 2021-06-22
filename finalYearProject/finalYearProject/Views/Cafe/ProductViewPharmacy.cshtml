@@ -4,6 +4,7 @@
     var category = ViewBag.Categoryname;
     var uname = ViewBag.uname;
     var cafe = ViewBag.cafe;
+    var email= ViewBag.email;
 }
 <div class="increse" style="margin-left:5px;margin-top:5px;">
     <h1 id="myBtn"><i class="fa fa-shopping-cart"></i><span>0</span></h1>
@@ -213,8 +214,12 @@
             }
         }
         function deleteItems() {
-            localStorage.clear();
-            window.location.reload();
+             let items = [];
+            localStorage.setItem("productsInCart", JSON.stringify(items));
+            let productNumbers = localStorage.getItem("cartNumbers");
+            productNumbers=0;
+              localStorage.setItem("cartNumbers", productNumbers);
+                  window.location.reload();
         }
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
@@ -276,6 +281,7 @@
             let items = [];
 
             let pro = new Object();
+            pro.email = "@email";
             pro.cafe = "@cafe";
             pro.userId="@uname";
             pro.Id = id;
@@ -300,8 +306,6 @@
                         pro.inCart = data.inCart + 1;
                     }
                     else {
-
-
                         items.push(data);
                     }
                 })
@@ -321,9 +325,9 @@
                 console.log("hello");
                 let cartItems = localStorage.getItem("productsInCart");
                 cartItems = JSON.parse(cartItems);
-                const number = event.target.parentElement.parentElement.children[3].children[0].textContent;
+                const number = event.target.parentElement.parentElement.children[2].children[0].textContent;
                 cartItems.map(data => {
-                    if (data.Name != event.target.parentElement.parentElement.children[2].children[0].textContent) {
+                    if (data.Name != event.target.parentElement.parentElement.children[1].children[0].textContent) {
                         items.push(data);
                     }
                 })

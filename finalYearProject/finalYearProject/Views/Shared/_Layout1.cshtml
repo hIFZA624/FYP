@@ -1,4 +1,7 @@
 ﻿<!DOCTYPE html>
+@{ 
+    var uname = ViewBag.uname;
+}
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -131,11 +134,11 @@
         <a href="javascript:void(0)" class="closebtn" onClick="closeNav()">&times;</a>
 
 
-      
-        <a asp-action="ViewRestaurent">  <i class="fa fa-list-alt" aria-hidden="true"></i> View Restaurants</a>
-        <a asp-action="AddRestaurent"><i class="fa fa-plus" aria-hidden="true"></i> Add Restaurant</a>
+        <a asp-controller="Home" asp-route-uname="@uname" asp-action="Admin"><i class="fa fa-home"></i> Home</a>
+        <a asp-action="ViewRestaurent" asp-route-uname="@uname">  <i class="fa fa-list-alt" aria-hidden="true"></i> View Restaurants</a>
+        <a asp-action="AddRestaurent" asp-route-uname="@uname"><i class="fa fa-plus" aria-hidden="true"></i> Add Restaurant</a>
 
-        <a asp-controller="Home" asp-action="Admin"><i class="fa fa-sign-out"></i> Exit</a>
+        <a asp-controller="Home" asp-action="Logout"><i class="fa fa-sign-out"></i> Logout</a>
     </div>
     <div>
         @RenderBody()

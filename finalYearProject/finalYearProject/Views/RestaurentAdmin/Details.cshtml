@@ -1,6 +1,8 @@
 ﻿@using finalYearProject.Models;
 @model Restaurent
-@{ Layout = "~/Views/Shared/_Layout1.cshtml"; }
+@{
+    var uname = ViewBag.uname;
+    Layout = "~/Views/Shared/_Layout1.cshtml"; }
 
 
 
@@ -65,8 +67,8 @@
                 <p>Open Untill: @Model.OpenUntil</p>
                 <p>Delivery Charges: @Model.DeliveryCharges</p>
                 <div>
-                    <a asp-route-restaurentID="@Model.RestaurentID" asp-action="AddMenu" class="btn bg-dark text-white">Add Menu</a>
-                    <a asp-action="ViewRestaurentMenue" asp-route-restaurentID="@Model.RestaurentID" class="btn bg-dark text-white">View Menu</a>
+                    <a asp-route-restaurentID="@Model.RestaurentID" asp-route-uname="@uname" asp-action="AddMenu" class="btn bg-dark text-white">Add Menu</a>
+                    <a asp-action="ViewRestaurentMenue" asp-route-uname="@uname" asp-route-restaurentID="@Model.RestaurentID" class="btn bg-dark text-white">View Menu</a>
                 </div>
             </div>
         </div>
