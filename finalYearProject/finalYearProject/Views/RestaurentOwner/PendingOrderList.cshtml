@@ -6,30 +6,26 @@
 }
 @if (Model.Any())
 {
-    <section class="mainpart">
-        <div class="container">
-            <div class="col-lg-12 m-auto d-block card p-3 decorate">
-                <br />
-                <h2 class="text-center">Restaurant Pending Order List</h2>
-                <div>
-                    <table class="table table-dark table-hover table-striped ">
-                        <thead>
+   
+                    <table class="table table-dark table-hover mt-4 table-striped ">
 
+                        <thead>
                             <tr>
 
+
+
                                 <th>
-                                    Items Present
+                                    Total No Of Item
                                 </th>
                                 <th>
                                     Total Amount
                                 </th>
                                 <th>
-                                    Order Place Date & Time
+                                    Order Date
                                 </th>
                                 <th>
-                                    Required delivery Time
+                                    Require Delivery Time
                                 </th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
 
@@ -38,69 +34,44 @@
                         <tbody>
                             @foreach (finalYearProject.Models.Receipt r in Model)
                             {
+
                                 <tr>
+
 
                                     <td>
                                         @r.NoOfItems
 
                                     </td>
                                     <td>
-                                        Rs @r.TotalAmount
+                                        @r.TotalAmount
                                     </td>
                                     <td>
                                         @r.OrderTime
+
                                     </td>
                                     <td>
                                         @r.UserTime
                                     </td>
                                     <td>
-                                        <div class="dropdown">
-                                            <button onclick="myFunction()" class="dropbtn">Select</button>
-                                            <div id="myDropdown" class="dropdown-content">
-                                                <a class="btn btn-info" asp-route-RestaurentID="@resid" asp-route-uname="@uname" asp-action="Accept" asp-route-receiptID="@r.ReceiptID">Accept Order</a>
-                                                <a class="btn btn-info" asp-route-RestaurentID="@resid"  asp-route-uname="@uname" asp-action="Decline" asp-route-receiptID="@r.ReceiptID">Decline Order</a>
-                                                <a class="btn btn-info" asp-route-RestaurentID="@resid"   asp-route-uname="@uname" asp-action="Detail" asp-route-receiptID="@r.ReceiptID">Order Detail</a>
 
-                                            </div>
-                                        </div>
+                                        <a class="btn btn-info" asp-action="Accept" asp-route-receiptID="@r.ReceiptID" asp-route-RestaurentID="@resid" asp-route-uname="@uname">Accept</a>
+                                        <a class="btn btn-info" asp-action="Decline" asp-route-receiptID="@r.ReceiptID" asp-route-RestaurentID="@resid" asp-route-uname="@uname">Decline</a>
+                                        <a class="btn btn-info" asp-action="Detail" asp-route-receiptID="@r.ReceiptID" asp-route-RestaurentID="@resid" asp-route-uname="@uname">Detail</a>
 
                                     </td>
-
 
                                 </tr>
                             }
 
                         </tbody>
-                    </table>
-                </div>
-            </div>
 
-        </div>
-    </section>
+
+                    </table>
+
+
+               
 }
 else
 {
     <h5 class="text-center mt-4">No Items in Pending Order List</h5>
 }
-<script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-    }
-
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function (event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
-            for (i = 0; i < dropdowns.length; i++) {
-                var openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
-            }
-        }
-    }
-</script>
-

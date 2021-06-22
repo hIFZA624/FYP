@@ -118,8 +118,7 @@ namespace finalYearProject.Controllers
             foreach (Receipt res in pucitRepository.restaurantPendingOrder)
             {
                 if (res.RestaurentID == RestaurentID && res.OrderAccept==0)
-                {
-                   
+                {        
                     pucitRepository.restaurantPendingOrderres.Add(res);
                 }
             }
@@ -212,7 +211,7 @@ namespace finalYearProject.Controllers
             return View("PendingOrderList", pucitRepository.restaurantPendingOrderres);
         }
       
-        public ViewResult Detail( string RestaurentID, int receiptID,string uname)
+        public ViewResult Detail( string RestaurentID, int receiptID, string uname)
         {
             ViewBag.uname = uname;
             ViewBag.resId = RestaurentID;

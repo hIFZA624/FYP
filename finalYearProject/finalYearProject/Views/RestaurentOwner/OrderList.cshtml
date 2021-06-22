@@ -36,29 +36,29 @@
                             @foreach (finalYearProject.Models.Receipt r in Model)
                             {
 
-                                <tr>
+                            <tr>
+                               
+                              
+                                <td>
+                                    @r.NoOfItems
 
+                                </td>
+                                <td>
+                                    Rs @r.TotalAmount
+                                </td>
+                                <td>
+                                    @r.OrderTime
 
-                                    <td>
-                                        @r.NoOfItems
+                                </td>
+                                <td>
+                                    @r.UserTime
+                                </td>
+                                <td>
+                                    <a class="btn btn-info" asp-route-uname="@uname" asp-action="Detail" asp-route-RestaurentID="@resid" asp-route-receiptID="@r.ReceiptID">Receipt</a>
 
-                                    </td>
-                                    <td>
-                                        Rs @r.TotalAmount
-                                    </td>
-                                    <td>
-                                        @r.OrderTime
+                                </td>
 
-                                    </td>
-                                    <td>
-                                        @r.UserTime
-                                    </td>
-                                    <td>
-                                        <a class="btn btn-info" asp-route-uname="@uname" asp-action="Detail" asp-route-RestaurentID="@resid" asp-route-receiptID="@r.ReceiptID">Receipt</a>
-
-                                    </td>
-
-                                </tr>
+                            </tr>
                             }
 
                         </tbody>

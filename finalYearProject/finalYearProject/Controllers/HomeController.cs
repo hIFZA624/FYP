@@ -288,6 +288,7 @@ namespace finalYearProject.Controllers
             ViewBag.uname = uname;
             return View();
         }
+
         public ViewResult About(string uname)
         {
             ViewBag.uname = uname;
